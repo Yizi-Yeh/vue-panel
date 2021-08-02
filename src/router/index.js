@@ -23,10 +23,10 @@ const routes = [
         meta: {
           title: 'List',
           permissions: [
-            'Read User',
-            'Update User',
-            'Delete User',
-            'Create User'
+            'Read Dashboard',
+            'Update Dashboard',
+            'Delete Dashboard',
+            'Create Dashboard'
           ]
         }
       },
@@ -46,10 +46,10 @@ const routes = [
         meta: {
           title: 'DashboardAdd',
           permissions: [
-            'Read User',
-            'Update User',
-            'Delete User',
-            'Create User'
+            'Read Dashboard',
+            'Update Dashboard',
+            'Delete Dashboard',
+            'Create Dashboard'
           ]
         }
       },
@@ -66,7 +66,7 @@ const routes = [
         component: () => import('@/views/Dashboard/Edit/index.vue'),
         meta: {
           title: 'DashboardEdit',
-          permissions: ['Update User']
+          permissions: ['Update Dashboard']
         }
       },
       { path: '*', redirect: '', hidden: true }
