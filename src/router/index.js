@@ -69,9 +69,138 @@ const routes = [
           permissions: ['Update Dashboard']
         }
       },
+      {
+        path: '/adminmanagement',
+        name: 'AdminManagement',
+        component: Layout,
+        redirect: '/adminmanagement/parking/license-white-list',
+        meta: {
+          title: 'AdminManagement'
+        },
+        children: [
+          {
+            path: '/parking/license-white-list',
+            name: 'LicenseWhiteList',
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+            meta: {
+              title: 'LicenseWhiteList',
+              permissions: [
+                'Read LicenseWhiteList',
+                'Update LicenseWhiteList',
+                'Delete LicenseWhiteList',
+                'Create LicenseWhiteList'
+              ]
+            }
+          },
+          {
+            path: '/parking/license-white-list/:id',
+            name: 'LicenseWhiteListCheck',
+            hidden: true,
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/View/index.vue'),
+            meta: {
+              title: 'LicenseWhiteListCheck',
+              permissions: ['Read LicenseWhiteList']
+            }
+          },
+          {
+            path: '/parking/license-white-list/add',
+            name: 'LicenseWhiteListAdd',
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
+            meta: {
+              title: 'LicenseWhiteListAdd',
+              permissions: [
+                'Read LicenseWhiteList',
+                'Update LicenseWhiteList',
+                'Delete LicenseWhiteList',
+                'Create LicenseWhiteList'
+              ]
+            }
+          },
+          {
+            path: '/adminmanagement/parking/license-white-list/edit',
+            redirect: '/adminmanagement/parking/license-white-list/',
+            hidden: true
+          },
+          {
+            path: '/adminmanagement/parking/license-white-list/edit/:id',
+            name: 'LicenseWhiteListEdit',
+            hidden: true,
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+            meta: {
+              title: 'LicenseWhiteListEdit',
+              permissions: ['Update LicenseWhiteList']
+            }
+          }
+        ]
+      },
+      // {
+      //   path: '/adminmanagement/parking/license-admin',
+      //   name: 'LicenseAdmin',
+      //   component: Layout,
+      //   // redirect: '/adminmanagement/parking/license-admin',
+      //   meta: {
+      //     title: 'LicenseAdmin'
+      //   },
+      //   children: [
+      //     {
+      //       path: '/parking/license-admin',
+      //       name: 'LicenseWhiteList',
+      //       component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+      //       meta: {
+      //         title: 'LicenseWhiteList',
+      //         permissions: [
+      //           'Read LicenseWhiteList',
+      //           'Update LicenseWhiteList',
+      //           'Delete LicenseWhiteList',
+      //           'Create LicenseWhiteList'
+      //         ]
+      //       }
+      //     },
+      //     {
+      //       path: '/parking/license-white-list/:id',
+      //       name: 'LicenseWhiteListCheck',
+      //       hidden: true,
+      //       component: () => import('@/views/AdminManagement/LicenseWhiteList/View/index.vue'),
+      //       meta: {
+      //         title: 'LicenseWhiteListCheck',
+      //         permissions: ['Read LicenseWhiteList']
+      //       }
+      //     },
+      //     {
+      //       path: '/parking/license-white-list/add',
+      //       name: 'LicenseWhiteListAdd',
+      //       component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
+      //       meta: {
+      //         title: 'LicenseWhiteListAdd',
+      //         permissions: [
+      //           'Read LicenseWhiteList',
+      //           'Update LicenseWhiteList',
+      //           'Delete LicenseWhiteList',
+      //           'Create LicenseWhiteList'
+      //         ]
+      //       }
+      //     },
+      //     {
+      //       path: '/adminmanagement/parking/license-white-list/edit',
+      //       redirect: '/adminmanagement/parking/license-white-list/',
+      //       hidden: true
+      //     },
+      //     {
+      //       path: '/adminmanagement/parking/license-white-list/edit/:id',
+      //       name: 'LicenseWhiteListEdit',
+      //       hidden: true,
+      //       component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+      //       meta: {
+      //         title: 'LicenseWhiteListEdit',
+      //         permissions: ['Update LicenseWhiteList']
+      //       }
+      //     }
+      //   ]
+      // },
       { path: '*', redirect: '', hidden: true }
     ]
   }
+
 ]
 
 const router = new VueRouter({

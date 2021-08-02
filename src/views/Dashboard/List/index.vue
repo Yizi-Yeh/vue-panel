@@ -4,7 +4,7 @@
       <el-col :span="8" :offset="1"
         ><div class="bulletin-board">
           <h1>佈告欄</h1>
-          <el-button type="primary">新增佈告欄 </el-button>
+          <el-button type="primary" @click="$router.push({ path: `add` })">新增佈告欄 </el-button>
         </div></el-col
       >
     </el-row>
@@ -17,7 +17,7 @@
       ></el-col>
       <el-col :span="24" :offset="3"
         ><div class="bulletin-board-title">
-          <span>系統維修通知</span>
+          <span @click="$router.push({ path: `edit/${props.item.id}` })">系統維修通知</span>
         </div></el-col
       >
       <el-col :span="24" :offset="4"
@@ -77,6 +77,9 @@ export default {
       font-size: $text-font-xs;
       color: $color_blue;
       margin-bottom: 6px;
+      &:hover{
+        cursor: pointer;
+      }
     }
     .bulletin-board-content {
       font-size: $text-font-xs;

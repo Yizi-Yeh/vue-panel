@@ -1,4 +1,4 @@
-<template>
+<template v-if="">
   <el-container class="layout-main-top">
     <nav>
       <el-menu class="layout-header">
