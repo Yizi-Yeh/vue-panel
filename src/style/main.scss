@@ -1,0 +1,9 @@
+@import '@/style/basics.scss';
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: $color_blue
+}

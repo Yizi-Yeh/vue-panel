@@ -1,0 +1,35 @@
+#userLayout.user-layout-wrapper {
+  height: 100%;
+  .container {
+    overflow: auto;
+    width: 100%;
+    min-height: 100%;
+    background: url(~@/assets/background.png) no-repeat ;
+    background-size: cover;
+    @include flex(column,center,center);
+    justify-content: center;
+
+    .top {
+        margin-bottom: 10px;
+      .logo-login {
+        width: 280px;
+      }
+    }
+
+    .main {
+      width: 300px;
+    }
+    .bottom {
+        margin-top: -10px;
+        width: 300px;
+        span{
+            font-size: 13px;
+            color: #1E98D7;
+            float: right;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+      }
+  }
+}

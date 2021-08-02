@@ -1,0 +1,77 @@
+$color_blue: #00a7f0;
+$color_white: white;
+$color_black: black;
+
+
+// 13px
+$text-font-xs: 0.8125rem;
+// 15px
+$text-font-sm: 0.9375rem;
+// 16px
+$text-font-md: 1rem;
+// 18px
+$text-font-lg: 1.125rem;
+
+$heading-font-xs: 1.375rem;
+$heading-font-sm: 1.6rem;
+$heading-font-md: 2rem;
+$heading-font-lg: 2.2rem;
+$heading-font-xl: 3rem;
+
+
+$line-height-sm: 1.4;
+$line-height-md: 1.6;
+$line-height-lg: 2;
+
+
+$letter-spacing-xs: 0.5px;
+$letter-spacing-sm: 1px;
+$letter-spacing-md: 5px;
+$letter-spacing-lg: 10px;
+
+// $color-primary-dark:darken($color-primary, 6%);
+// $color-secondary-dark:darken($color-secondary, 30%);
+// $color-tag-dark: darken($color-tag, 5%);
+// $color-secondary-light:lighten($color-secondary, 30%);
+// $color-danger-light:lighten($color-danger, 10%);
+// $color-tag-light: lighten($color-tag, 5%);
+
+
+@mixin center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin img-objectfit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+@mixin filter($opacity) {
+  filter: brightness($opacity);
+}
+
+@mixin flex($direct, $main, $cross) {
+  display: flex;
+  flex-direction: $direct;
+  justify-content: $main;
+  align-items: $cross;
+}
+
+@mixin indep {
+  position: absolute;
+}
+
+@mixin trans($s) {
+  transition: $s;
+}
