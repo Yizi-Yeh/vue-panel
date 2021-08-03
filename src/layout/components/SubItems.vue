@@ -1,5 +1,5 @@
 <template>
-  <!-- <el-container class="layout-main-top">
+  <el-container class="layout-main-top">
     <nav>
       <el-menu class="layout-header">
         <img
@@ -27,72 +27,32 @@
         >
       </el-menu>
     </nav>
-    <nav v-if="!$route.path.includes('/dashboard')">
+    <nav >
       <el-menu class="layout-submenu">
         <el-menu-item class="layout-subitems">
           <router-link to="/adminmanagement/parking"
-            >停車場管理</router-link
+            >帳號管理</router-link
           ></el-menu-item
         >
         <el-menu-item class="layout-subitems"
           ><router-link to="/adminmanagement/access-control"
-            >門禁管理</router-link
+            >單位管理</router-link
           ></el-menu-item
         >
         <el-menu-item class="layout-subitems"
           ><router-link to="/adminmanagement/visitor"
-            >訪客管理</router-link
+            >權限群組</router-link
           ></el-menu-item
         >
-        <el-menu-item class="layout-subitems"
+        <el-menu-item  class="layout-subitems"
           ><router-link to="/adminmanagement/equipment"
-            >資源管理</router-link
+            >？？管理</router-link
           ></el-menu-item
         >
       </el-menu>
     </nav>
-  </el-container> -->
-    <div v-if="!item.hidden && hasChildren">
-    <v-list-item
-      v-if="
-        hasOneShowingChild(item.children, item) &&
-          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-          !item.alwaysCollapse
-      "
-      :to="combineRoute(onlyOneChild.path)"
-    >
-      <v-list-item-icon class="layout-drawer__icon" v-if="onlyOneChild.meta">
-        <v-icon>{{ onlyOneChild.meta.icon }}</v-icon>
-      </v-list-item-icon>
+  </el-container>
 
-      <v-list-item-content>
-        <v-list-item-title>
-          {{ onlyOneChild.meta.title }}
-        </v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-
-    <v-list-group
-      v-else
-      :prepend-icon="item.meta ? item.meta.icon : ''"
-      :group="item.path"
-      class="my-1"
-    >
-      <template v-slot:activator>
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ item.meta.title }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </template>
-      <SidebarItems
-        v-for="(route, index) in item.children"
-        :key="index"
-        :item="route"
-        :parentRoute="combineRoute(route.path)"
-      />
-    </v-list-group>
-  </div>
 </template>
 
 <script>

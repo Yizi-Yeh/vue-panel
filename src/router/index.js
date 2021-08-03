@@ -21,7 +21,8 @@ const routes = [
         name: 'DashboardList',
         component: () => import('@/views/Dashboard/List/index.vue'),
         meta: {
-          title: 'DashboardList',
+          title: '首頁',
+          // 擁有 Read / Update / Delete / Create 可訪問此路由
           permissions: [
             'Read Dashboard',
             'Update Dashboard',
@@ -35,7 +36,7 @@ const routes = [
         name: 'DashboardCheck',
         component: () => import('@/views/Dashboard/View/index.vue'),
         meta: {
-          title: 'DashboardCheck',
+          title: '查看單筆佈告欄',
           permissions: ['Read User']
         }
       },
@@ -44,7 +45,7 @@ const routes = [
         name: 'DashboardAdd',
         component: () => import('@/views/Dashboard/Add/index.vue'),
         meta: {
-          title: 'DashboardAdd',
+          title: '新增佈告欄',
           permissions: [
             'Read Dashboard',
             'Update Dashboard',
@@ -55,7 +56,6 @@ const routes = [
       },
       {
         path: 'dashboard/edit',
-        // 共用list頁面
         redirect: 'dashboard/list',
         hidden: true
       },
@@ -65,90 +65,137 @@ const routes = [
         hidden: true,
         component: () => import('@/views/Dashboard/Edit/index.vue'),
         meta: {
-          title: 'DashboardEdit',
+          title: '編輯單筆佈告欄',
           permissions: ['Update Dashboard']
         }
-      }
-    ]
-  },
-  {
-    path: '/adminmanagement',
-    name: 'AdminManagement',
-    component: Layout,
-    redirect: '/adminmanagement/parking',
-    meta: {
-      title: 'AdminManagement'
-    },
-    children: [
+      },
       {
-        path: '/adminmanagement/parking/license-white-list',
-        name: 'LicenseWhiteList',
-        component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+        path: '/adminmanagement',
+        name: 'AdminManagement',
+        component: Layout,
+        redirect: '/adminmanagement/parking/license-white-list',
         meta: {
-          title: 'LicenseWhiteList',
-          permissions: [
-            'Read LicenseWhiteList',
-            'Update LicenseWhiteList',
-            'Delete LicenseWhiteList',
-            'Create LicenseWhiteList'
-          ]
+          title: 'AdminManagement'
         },
         children: [
+          {
+            path: '/parking/license-white-list',
+            name: 'LicenseWhiteList',
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+            meta: {
+              title: 'LicenseWhiteList',
+              permissions: [
+                'Read LicenseWhiteList',
+                'Update LicenseWhiteList',
+                'Delete LicenseWhiteList',
+                'Create LicenseWhiteList'
+              ]
+            }
+          },
           {
             path: '/parking/license-white-list/:id',
             name: 'LicenseWhiteListCheck',
             hidden: true,
-            component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/View/index.vue'),
             meta: {
               title: 'LicenseWhiteListCheck',
               permissions: ['Read LicenseWhiteList']
             }
+          },
+          {
+            path: '/parking/license-white-list/add',
+            name: 'LicenseWhiteListAdd',
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
+            meta: {
+              title: 'LicenseWhiteListAdd',
+              permissions: [
+                'Read LicenseWhiteList',
+                'Update LicenseWhiteList',
+                'Delete LicenseWhiteList',
+                'Create LicenseWhiteList'
+              ]
+            }
+          },
+          {
+            path: '/adminmanagement/parking/license-white-list/edit',
+            redirect: '/adminmanagement/parking/license-white-list/',
+            hidden: true
+          },
+          {
+            path: '/adminmanagement/parking/license-white-list/edit/:id',
+            name: 'LicenseWhiteListEdit',
+            hidden: true,
+            component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+            meta: {
+              title: 'LicenseWhiteListEdit',
+              permissions: ['Update LicenseWhiteList']
+            }
           }
         ]
-
-      },
+      }
+    ]
+  },
+  {
+    path: '/permission',
+    name: 'Permission',
+    component: Layout,
+    // 查看帳號
+    redirect: '/permission/user/list',
+    meta: {
+      title: '權限管理'
+    },
+    children: [
       {
-        path: '/adminmanagement/parking/license-admin',
-        name: 'LicenseAdmin',
-        component: () => import('@/views/AdminManagement/LicenseAdmin/List/index.vue'),
+        path: '/permission/user/list',
+        name: 'UserList',
+        component: () => import('@/views/Permission/User/List/index.vue'),
         meta: {
-          title: 'LicenseAdmin',
+          title: '帳號管理',
           permissions: [
-            'Read LicenseAdminList',
-            'Update LicenseAdminList',
-            'Delete LicenseAdminList',
-            'Create LicenseAdminList'
-          ]
-        }
-      },
-
-      {
-        path: '/parking/license-white-list/add',
-        name: 'LicenseWhiteListAdd',
-        component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
-        meta: {
-          title: 'LicenseWhiteListAdd',
-          permissions: [
-            'Read LicenseWhiteList',
-            'Update LicenseWhiteList',
-            'Delete LicenseWhiteList',
-            'Create LicenseWhiteList'
+            'Read User',
+            'Update User',
+            'Delete User',
+            'Create User'
           ]
         }
       },
       {
-        path: '/adminmanagement/parking/license-white-list/edit',
-        redirect: '/adminmanagement/parking/license-white-list/',
+        path: 'list/:id',
+        name: 'UserCheck',
+        hidden: true,
+        component: () => import('@/views/Permission/User/View/index.vue'),
+        meta: {
+          title: '查看帳號管理',
+          permissions: ['Read User']
+        }
+      },
+      {
+        path: 'list/add',
+        name: 'UserAdd',
+        component: () => import('@/views/Permission/User/Add/index.vue'),
+        meta: {
+          title: '新增帳號',
+          permissions: [
+            'Read User',
+            'Update User',
+            'Delete User',
+            'Create User'
+          ]
+        }
+      },
+      {
+        path: 'list/edit',
+        redirect: '/permission/user/list',
         hidden: true
       },
       {
-        path: '/adminmanagement/parking/license-white-list/edit/:id',
-        name: 'LicenseWhiteListEdit',
+        path: 'list/edit/:id',
+        name: 'UserEdit',
         hidden: true,
-        component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+        component: () => import('@/views/Permission/User/Edit/index.vue'),
         meta: {
-          title: 'LicenseWhiteListEdit',
-          permissions: ['Update LicenseWhiteList']
+          title: '編輯帳號',
+          permissions: ['Update User']
         }
       }
     ]

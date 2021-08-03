@@ -2,21 +2,45 @@
   <nav>
     <el-menu class="layout-aside-menu">
       <el-menu-item class="layout-aside-items" index="1">
-        <router-link to="/">首頁</router-link>
+        <span slot="title"> <router-link to="/">首頁</router-link></span>
+      </el-menu-item>
+      <hr />
+       <!-- <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>行政管理系統</span>
+        </template>
+
+        <el-menu-item-group title="停車場管理">
+          <el-menu-item index="1-1">車牌白名單</el-menu-item>
+          <el-menu-item index="1-2">停管系統後台</el-menu-item>
+        </el-menu-item-group>
+
+        <el-menu-item-group title="門禁管理">
+          <el-menu-item index="1-1">總覽</el-menu-item>
+          <el-menu-item index="1-2">白名單</el-menu-item>
+          <el-menu-item index="1-3">緊急控管</el-menu-item>
+          <el-menu-item index="1-4">後台管理</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu> -->
+
+      <el-menu-item class="layout-aside-items" index="1">
+        <span slot="title">
+          <router-link to="/adminmanagement">行政管理系統</router-link></span
+        >
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="1">
-        <router-link to="/adminmanagement">行政管理系統</router-link>
-      </el-menu-item>
-      <hr />
-      <el-menu-item class="layout-aside-items" index="1">
-        <router-link to="/auth">權限管理</router-link>
+        <router-link to="/permission">權限管理</router-link>
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="1">
         <router-link to="/maintain">保養維護</router-link>
       </el-menu-item>
       <hr />
+    </el-menu>
+    <el-menu default-active="2" class="el-menu-vertical-demo">
+
     </el-menu>
   </nav>
 </template>
