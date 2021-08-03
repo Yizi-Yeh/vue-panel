@@ -2,7 +2,7 @@
   <nav>
     <el-menu class="layout-aside-menu">
       <el-menu-item class="layout-aside-items" index="1">
-        <router-link to="/dashboard/list">首頁</router-link>
+        <router-link to="/">首頁</router-link>
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="1">
