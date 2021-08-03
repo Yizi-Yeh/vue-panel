@@ -5,7 +5,7 @@
         <span slot="title"> <router-link to="/">首頁</router-link></span>
       </el-menu-item>
       <hr />
-       <!-- <el-submenu index="1">
+      <!-- <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>行政管理系統</span>
@@ -31,7 +31,9 @@
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="1">
-        <router-link to="/permission">權限管理</router-link>
+        <span slot="title">
+          <router-link to="/permission">權限管理</router-link>
+        </span>
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="1">
@@ -39,9 +41,7 @@
       </el-menu-item>
       <hr />
     </el-menu>
-    <el-menu default-active="2" class="el-menu-vertical-demo">
-
-    </el-menu>
+    <el-menu default-active="2" class="el-menu-vertical-demo"> </el-menu>
   </nav>
 </template>
 
@@ -73,5 +73,8 @@ export default {}
     color: $color_blue; /* old IE */
     background-color: $color_blue; /* Modern Browsers */
   }
+}
+.router-link-active {
+  color: $color_white;
 }
 </style>

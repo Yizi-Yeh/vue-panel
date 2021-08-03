@@ -2,12 +2,12 @@
   <div id="permission-wrap">
     <div class="permission-content">
       <el-row class="top-row">
-        <el-col :span="20"
+        <el-col :span="24"
           ><div class="top-col">
             <el-button
               type="primary"
               class="is-active"
-              @click="$router.push({ path: `` })"
+              @click="$router.push({ path: `list` })"
               >總覽
             </el-button>
             <el-button @click="$router.push({ path: `login-session` })"
@@ -15,54 +15,36 @@
             </el-button>
           </div></el-col
         >
-        <el-col :span="10">
-          <div class="top-col">
-            <el-input
-              style="font-family:'EB Garamond"
-              suffix-icon="el-icon-search"
-              type="text"
-              placeholder="請輸入關鍵字"
-              v-model="query"
-            ></el-input>
-          </div>
-        </el-col>
       </el-row>
       <el-row class="second-row">
-        <el-col class="second-col" :span="19">
-          <el-select v-model="value" placeholder="請選擇單位">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+        <el-col class="second-col" :span="10">
+          <div class="block">
+            <span class="demonstration">日期</span>
+            <el-date-picker
+              v-model="value1"
+              type="date"
+              placeholder="請選擇日期"
             >
-            </el-option>
-          </el-select>
-          <el-select v-model="value" placeholder="請選擇部門">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+            </el-date-picker>
+          </div>
+          <el-col :span="20">
+               <el-time-picker
+              is-range
+              v-model="value1"
+              range-separator="至"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              placeholder="选择时间范围"
             >
-            </el-option>
-          </el-select>
-          <el-select v-model="value" placeholder="請選擇權限">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
+            </el-time-picker>
+          </el-col>
         </el-col>
-        <el-col :span="5" class="second-col">
+        <el-col :span="3" class="second-col">
           <el-button
             type="primary"
-            icon="el-icon-plus"
+            icon="el-icon-search"
             @click="$router.push({ path: `add` })"
-            >新增帳號
+            >查詢
           </el-button>
         </el-col>
       </el-row>
@@ -108,7 +90,10 @@
 
             <el-table-column label="動作" width="80">
               <template #default="">
-                <i     @click="$router.push({ path: `edit/:id` })" class="fas fa-pen"></i>
+                <i
+                  @click="$router.push({ path: `edit/:id` })"
+                  class="fas fa-pen"
+                ></i>
                 <i class="far fa-trash-alt"></i>
               </template>
             </el-table-column>
@@ -208,7 +193,6 @@ export default {
     margin-bottom: 20px;
     @include flex(row, space-between, flex-start);
     .el-input__inner {
-      border: none;
       color: $color_grey !important;
     }
   }

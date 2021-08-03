@@ -160,7 +160,7 @@ const routes = [
         }
       },
       {
-        path: 'list/:id',
+        path: '/permission/user/list/:id',
         name: 'UserCheck',
         hidden: true,
         component: () => import('@/views/Permission/User/View/index.vue'),
@@ -170,7 +170,7 @@ const routes = [
         }
       },
       {
-        path: 'list/add',
+        path: '/permission/user/add',
         name: 'UserAdd',
         component: () => import('@/views/Permission/User/Add/index.vue'),
         meta: {
@@ -196,6 +196,20 @@ const routes = [
         meta: {
           title: '編輯帳號',
           permissions: ['Update User']
+        }
+      }, {
+        path: '/permission/user/login-session',
+        name: 'UserSession',
+        hidden: true,
+        component: () => import('@/views/Permission/User/Record/index.vue'),
+        meta: {
+          title: '登入紀錄',
+          permissions: [
+            'Read User',
+            'Update User',
+            'Delete User',
+            'Create User'
+          ]
         }
       }
     ]
