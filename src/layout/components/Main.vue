@@ -1,11 +1,6 @@
 <template>
   <el-main>
-    <!-- <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" />
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" /> -->
-    <router-view>
-    </router-view>
+    <router-view> </router-view>
   </el-main>
 </template>
 

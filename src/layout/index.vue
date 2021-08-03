@@ -3,7 +3,10 @@
     <el-container class="layout-wrapper">
       <Aside />
       <el-container class="layout-main">
-        <SubItems />
+        <el-container class="layout-main-top">
+          <Header />
+          <SubItems />
+        </el-container>
         <Main />
       </el-container>
     </el-container>
@@ -14,12 +17,14 @@
 import Aside from './components/Aside/index.vue'
 import SubItems from './components/SubItems.vue'
 import Main from './components/Main.vue'
+import Header from './components/Header.vue'
 export default {
   name: 'Layout',
   components: {
     Aside,
     SubItems,
-    Main
+    Main,
+    Header
   }
 }
 </script>
@@ -34,8 +39,13 @@ export default {
   min-height: 100%;
   background: url(~@/assets/layout-background.png) no-repeat center/100% 100%;
   .layout-wrapper {
-     height: 630px;
+    height: 630px;
     .layout-main {
+      @include flex(column, center, center);
+    }
+    .layout-main-top {
+      height: 110px !important;
+      width: 100%;
       @include flex(column, center, center);
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard-wrap">
+<el-card  id="dashboard-wrap" class="box-card">
     <el-row>
       <el-col :span="8" :offset="1"
         ><div class="bulletin-board">
@@ -9,7 +9,7 @@
       >
     </el-row>
 
-    <el-row class="bulletin-board-daily" v-for="item in 3" :key="item">
+    <el-row class="bulletin-board-daily" v-for="item in 10" :key="item">
       <el-col :span="24" :offset="2"
         ><div class="bulletin-board-date">
           <span>2021 / 07 / 06</span>
@@ -28,7 +28,7 @@
         </div></el-col
       >
     </el-row>
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -43,9 +43,7 @@ export default {
 <style lang="scss">
 @import "@/style/main.scss";
 #dashboard-wrap {
-  margin: 5px 30px;
-  height: 100%;
-  background-color: $color_white;
+  margin: 5px 20px;
   border-radius: 15px;
   .bulletin-board {
     @include flex(row, space-around, flex-start);

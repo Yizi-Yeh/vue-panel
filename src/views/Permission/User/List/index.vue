@@ -1,5 +1,5 @@
 <template>
-  <div id="permission-wrap">
+<el-card  id="permission-wrap" class="box-card">
     <div class="permission-content">
       <el-row class="top-row">
         <el-col :span="20"
@@ -116,7 +116,7 @@
         </el-col>
       </el-row>
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -186,12 +186,10 @@ export default {
 <style lang="scss">
 @import "@/style/main.scss";
 #permission-wrap {
-  margin: 5px 30px;
-  height: 100%;
-  background-color: $color_white;
+  margin: 5px 20px;
   border-radius: 15px;
   .permission-content {
-    padding: 10px 25px;
+    padding:  10px;
   }
   .top-row {
     @include flex(row, space-between, flex-start);

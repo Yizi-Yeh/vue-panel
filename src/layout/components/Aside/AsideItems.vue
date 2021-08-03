@@ -24,24 +24,23 @@
         </el-menu-item-group>
       </el-submenu> -->
 
-      <el-menu-item class="layout-aside-items" index="1">
+      <el-menu-item class="layout-aside-items" index="2">
         <span slot="title">
           <router-link to="/adminmanagement">行政管理系統</router-link></span
         >
       </el-menu-item>
       <hr />
-      <el-menu-item class="layout-aside-items" index="1">
+      <el-menu-item class="layout-aside-items" index="3">
         <span slot="title">
           <router-link to="/permission">權限管理</router-link>
         </span>
       </el-menu-item>
       <hr />
-      <el-menu-item class="layout-aside-items" index="1">
+      <el-menu-item class="layout-aside-items" index="4">
         <router-link to="/maintain">保養維護</router-link>
       </el-menu-item>
       <hr />
     </el-menu>
-    <el-menu default-active="2" class="el-menu-vertical-demo"> </el-menu>
   </nav>
 </template>
 
