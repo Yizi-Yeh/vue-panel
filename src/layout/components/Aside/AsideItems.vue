@@ -31,9 +31,7 @@
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="3">
-        <span slot="title">
-          <router-link to="/permission">權限管理</router-link>
-        </span>
+        <router-link to="/permission">權限管理</router-link>
       </el-menu-item>
       <hr />
       <el-menu-item class="layout-aside-items" index="4">
@@ -71,6 +69,9 @@ export default {}
     height: 1px;
     color: $color_blue; /* old IE */
     background-color: $color_blue; /* Modern Browsers */
+  }
+  a{
+     color: $color_blue;
   }
 }
 .router-link-active {

@@ -15,16 +15,17 @@
 
 <script>
 import Aside from './components/Aside/index.vue'
+import Header from './components/Header.vue'
 import SubItems from './components/SubItems.vue'
 import Main from './components/Main.vue'
-import Header from './components/Header.vue'
+
 export default {
   name: 'Layout',
   components: {
     Aside,
+    Header,
     SubItems,
-    Main,
-    Header
+    Main
   }
 }
 </script>
@@ -33,7 +34,7 @@ export default {
 @import "@/style/main.scss";
 #layout {
   width: 100%;
-  padding-top: 10px;
+  padding-top: 50px;
   padding-left: 120px;
   padding-right: 120px;
   min-height: 100%;

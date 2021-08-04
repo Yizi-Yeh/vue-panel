@@ -17,9 +17,9 @@
         >
       </el-row>
       <el-row class="second-row">
-        <el-col class="second-col" :span="10">
+        <el-col class="second-col" :span="13">
           <div class="block">
-            <span class="demonstration">日期</span>
+            <span class="demonstration"></span>
             <el-date-picker
               v-model="value1"
               type="date"
@@ -27,19 +27,20 @@
             >
             </el-date-picker>
           </div>
+          </el-col>
           <el-col :span="20">
             <el-time-picker
               is-range
               v-model="value1"
               range-separator="至"
-              start-placeholder="开始时间"
-              end-placeholder="结束时间"
-              placeholder="选择时间范围"
+              start-placeholder="開始時間"
+              end-placeholder="結束時間"
+              placeholder="選擇時間範圍"
             >
             </el-time-picker>
           </el-col>
-        </el-col>
-        <el-col :span="3" class="second-col">
+
+        <el-col :span="4">
           <el-button
             type="primary"
             icon="el-icon-search"
@@ -47,6 +48,7 @@
             >查詢
           </el-button>
         </el-col>
+
       </el-row>
       <el-row offest="1">
         <el-col :span="24">
@@ -70,31 +72,27 @@
                 <span style="margin-left: 10px">{{ scope.row.company }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="姓名" width="100">
+            <el-table-column label="姓名" width="70">
               <template #default="scope">
                 <span style="margin-left: 10px">{{ scope.row.name }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="部門" width="100">
+            <el-table-column label="類別" width="60">
               <template #default="scope">
                 <span style="margin-left: 10px">{{
                   scope.row.department
                 }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="權限" width="120">
+            <el-table-column label="狀態" width="60">
               <template #default="scope">
                 <span style="margin-left: 10px">{{ scope.row.auth }}</span>
               </template>
             </el-table-column>
 
-            <el-table-column label="動作" width="80">
-              <template #default="">
-                <i
-                  @click="$router.push({ path: `edit/:id` })"
-                  class="fas fa-pen"
-                ></i>
-                <i class="far fa-trash-alt"></i>
+             <el-table-column label="時間" width="210">
+              <template #default="scope">
+                <span style="margin-left: 10px">{{ scope.row.time }}</span>
               </template>
             </el-table-column>
           </el-table>
@@ -114,57 +112,38 @@ export default {
           account: 'Username123',
           company: 'OOO股份有限公司',
           name: '林O柔',
-          department: '行銷部',
-          auth: '申請帳號'
+          department: '員工',
+          auth: '登入',
+          time: '2021-09-03 14:30:56'
         },
         {
           item: '2',
           account: 'Username123',
           company: 'OOO股份有限公司',
           name: '楊O智',
-          department: '行銷部',
-          auth: '自訂'
+          department: '員工',
+          auth: '登出',
+          time: '2021-09-03 14:30:56'
         },
         {
           item: '3',
           account: 'Username123',
           company: 'OOO股份有限公司',
           name: '李O達',
-          department: '人資管理部',
-          auth: '申請帳號'
+          department: '員工',
+          auth: '登入',
+          time: '2021-09-03 14:30:56'
         },
         {
           item: '4',
           account: 'Username123',
           company: 'OOO股份有限公司',
           name: '李O達',
-          department: '人資管理部',
-          auth: '申請帳號'
-        },
-        {
-          item: '5',
-          account: 'Username123',
-          company: 'OOO股份有限公司',
-          name: '李O達',
-          department: '人資管理部',
-          auth: '申請帳號'
-        },
-        {
-          item: '5',
-          account: 'Username123',
-          company: 'OOO股份有限公司',
-          name: '李O達',
-          department: '人資管理部',
-          auth: '申請帳號'
-        },
-        {
-          item: '5',
-          account: 'Username123',
-          company: 'OOO股份有限公司',
-          name: '李O達',
-          department: '人資管理部',
-          auth: '申請帳號'
+          department: '廠商',
+          auth: '登出',
+          time: '2021-09-03 14:30:56'
         }
+
       ]
     }
   },

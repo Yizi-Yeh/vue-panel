@@ -45,6 +45,7 @@ export default {
   width: 450px;
   flex-grow: 0.4;
   background-color: transparent;
+  margin-right: -400px;
   &-items {
     text-align: center;
     color: $color_blue;
