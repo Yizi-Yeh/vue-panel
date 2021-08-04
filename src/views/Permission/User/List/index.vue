@@ -104,7 +104,7 @@
               </template>
             </el-table-column>
 
-            <el-table-column label="動作" width="100">
+            <el-table-column label="動作" width="110">
               <template #default="">
                 <i
                   @click="$router.push({ path: `edit/:id` })"
