@@ -84,34 +84,52 @@ h1 {
     height: 32px;
     border-radius: 50%;
     z-index: 2;
-    background-color: #40b2f8;
+    background-color: #1db0dd;
     position: absolute;
-    transform: translate(-50%, -50%);
+    top: 86px;
+    left: 92px;
+    bottom: 0;
+    right: 0;
   }
   &::before {
     content: "＋";
-    font-size: 22px;
     position: absolute;
+    font-size: 22px;
+    height: 14px;
+    width: 14px;
     z-index: 3;
     color: $color_white;
     font-weight: bolder;
-    transform: translate(-50%, -50%);
+    top: 88px;
+    left: 98px;
+    bottom: 0;
+    right: 0;
   }
 }
+
 .img-inputer__placeholder {
   font-size: $text-font-lg !important;
   color: $color_blue !important;
 }
 
-.form-title{
+.form-title {
   color: $color_light_grey;
   font-size: $text-font-md;
 }
 
+.el-input-group__append,
+.el-input-group__prepend {
+  background-color: transparent;
+  color: #1db0dc;
+  vertical-align: middle;
+}
+.el-input__prefix {
+  background-color: transparent;
+  color: #1db0dc;
+  vertical-align: middle;
+}
 
-
-.el-input-group__append, .el-input-group__prepend {
-    background-color: transparent;;
-    color: #1DB0DC;
-    vertical-align: middle;
+.el-input--suffix .el-input__inner {
+  padding-right: 87px;
+  
 }

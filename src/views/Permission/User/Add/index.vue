@@ -4,7 +4,7 @@
       <el-col :span="4"><h1 class="title">新增帳號</h1></el-col>
       <el-col :span="8"
         ><span class="subtitle"
-          >標示<span class="alert">＊</span>為必填</span
+          >標示<span class="alert"> ＊ </span>為必填</span
         ></el-col
       >
     </el-row>
@@ -28,7 +28,6 @@
     </el-row>
 
     <div class="form-container">
-
       <div class="form-title">
         <span>個人資料</span>
       </div>
@@ -49,24 +48,24 @@
                   autocomplete="off"
                   placeholder="請輸入姓名"
                 >
-                  <template slot="prepend">姓名 <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >姓名 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
 
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
-                <el-input
-                  v-model="ruleForm.pass"
-                  autocomplete="off"
-                  placeholder="請選擇單位"
-                >
-                  <template slot="prepend">單位 <span style="color: #ED6363"> ＊</span></template></el-input
-                >
+                <el-select v-model="imgSize" placeholder="">
+                  <template slot="prefix">單位<span style="color: #ED6363">＊</span></template>
+                  <el-option label="XXX股份有限公司" value="M"></el-option>
+                  <el-option label="OOO股份有限公司" value="L"></el-option>
+                </el-select>
               </el-form-item>
             </el-col>
           </el-row>
-           <el-row>
+          <el-row>
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
                 <el-input
@@ -74,7 +73,9 @@
                   autocomplete="off"
                   placeholder="請輸入部門"
                 >
-                  <template slot="prepend">部門 <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >部門 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
@@ -86,7 +87,9 @@
                   autocomplete="off"
                   placeholder="請輸入電話"
                 >
-                  <template slot="prepend">電話 <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >電話 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
@@ -97,19 +100,18 @@
                   autocomplete="off"
                   placeholder="請輸入電子郵件"
                 >
-                  <template slot="prepend">電子郵件 <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >電子郵件 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
           </el-row>
-
         </el-form>
       </div>
-
     </div>
 
     <div class="form-container">
-
       <div class="form-title">
         <span>帳號設定</span>
       </div>
@@ -130,7 +132,9 @@
                   autocomplete="off"
                   placeholder="請輸入帳號"
                 >
-                  <template slot="prepend">帳號 <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >帳號 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
@@ -142,12 +146,14 @@
                   autocomplete="off"
                   placeholder="請輸入密碼"
                 >
-                  <template slot="prepend">密碼  <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >密碼 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
           </el-row>
-           <el-row>
+          <el-row>
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
                 <el-input
@@ -155,7 +161,9 @@
                   autocomplete="off"
                   placeholder="請選擇權限組別"
                 >
-                  <template slot="prepend">權限組別  <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >權限組別 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
@@ -167,15 +175,15 @@
                   autocomplete="off"
                   placeholder="請選擇類別"
                 >
-                  <template slot="prepend">類別  <span style="color: #ED6363">＊</span></template></el-input
+                  <template slot="prepend"
+                    >類別 <span style="color: #ED6363">＊</span></template
+                  ></el-input
                 >
               </el-form-item>
             </el-col>
           </el-row>
-
         </el-form>
       </div>
-
     </div>
   </el-card>
 </template>
@@ -282,20 +290,21 @@ export default {
   }
 
   .form-container {
-    border: 1px solid firebrick;
+    // border: 1px solid firebrick;
     text-align: center;
     width: 100%;
-    @include flex(row, center, center);
+    @include flex(row, center, flex-start);
     .form-title {
+      padding: 11px;
       width: 17%;
       height: 100%;
-      border: 1px solid rgb(12, 11, 11);
+      // border: 1px solid rgb(12, 11, 11);
     }
     .form-panel {
       @include flex(column, center, center);
       padding: 10px;
       width: 83%;
-      border: 1px solid rgb(51, 178, 34);
+      // border: 1px solid rgb(51, 178, 34);
       .form {
         @include flex(column, center, center);
         &-item {
