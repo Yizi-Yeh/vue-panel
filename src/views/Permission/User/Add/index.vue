@@ -1,113 +1,119 @@
 <template>
-  <div id="permission-wrap">
-    <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示<span style="color:red">＊</span>為必填</p>
-        </div></el-col
+  <el-card id="permission-wrap" class="box-card">
+    <el-row class="add-user-title">
+      <el-col :span="4"><h1 class="title">新增帳號</h1></el-col>
+      <el-col :span="8"
+        ><span class="subtitle"
+          >標示<span class="alert">＊</span>為必填</span
+        ></el-col
       >
     </el-row>
 
-    <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示＊為必填</p>
-        </div></el-col
-      >
+    <el-row class="img-upload">
+      <el-col :span="5">
+        <img-inputer
+          style="height:115px ;width:115px"
+          v-model="file"
+          theme="light"
+          size="small"
+          accept="image/jpeg,image/png"
+          placeholder="頭像"
+        />
+      </el-col>
+      <el-col :span="40">
+        <span class="img-intro"
+          >個人頭像上傳：格式可接受jpg. png，檔案大小限制為700kb~5mb</span
+        >
+      </el-col>
     </el-row>
 
     <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示＊為必填</p>
-        </div></el-col
+      <el-col :span="4"
+        ><span class="form-title">個人資料</span></el-col
       >
+      <el-col :span="10"
+        ><el-input
+          v-model="input"
+          placeholder="姓名＊ ｜ 請輸入聯絡人姓名"
+        ></el-input
+      ></el-col>
+      <el-col  :span="6" :offset="3">
+        <el-select v-model="value" clearable placeholder="單位＊ ｜ 請選擇單位">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option> </el-select
+      ></el-col>
     </el-row>
 
     <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示＊為必填</p>
-        </div></el-col
-      >
+      <el-col :span="8"
+        ><el-input v-model="input" placeholder="部門＊ ｜ 請輸入部門"></el-input
+      ></el-col>
+      <el-col :span="8"
+        ><el-input v-model="input" placeholder="電話＊ ｜ 請輸入電話"></el-input
+      ></el-col>
     </el-row>
+    <el-col :span="8"
+      ><el-input
+        v-model="input"
+        placeholder="電子郵件＊ ｜ 請輸入電子郵件"
+      ></el-input
+    ></el-col>
 
-    <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示＊為必填</p>
-        </div></el-col
-      >
-    </el-row>
-
-    <el-row>
-      <el-col :span="8" :offset="1"
-        ><div class="bulletin-board">
-          <h1>新增帳號</h1>
-          <p>標示＊為必填</p>
-        </div></el-col
-      >
-    </el-row>
-  </div>
+    <el-row
+      ><el-col><span class="form-title">帳號設定</span></el-col></el-row
+    >
+    <el-row
+      ><el-col><span class="form-title">備註資料</span></el-col></el-row
+    >
+    <el-row
+      ><el-col><span class="form-title">按鈕</span></el-col></el-row
+    >
+  </el-card>
 </template>
 
 <script>
 export default {
-  name: 'DashboardList',
+  name: 'AddUser',
   data () {
     return {}
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/style/main.scss";
 #permission-wrap {
-  margin: 5px 30px;
-  height: 100%;
-  background-color: $color_white;
+  margin: 5px 20px;
   border-radius: 15px;
-  .bulletin-board {
-    @include flex(row, space-around, center);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    h1 {
+  padding: 15px;
+  font-family: Noto Sans TC;
+  .add-user-title {
+    @include flex(row, flex-start, center);
+    margin-bottom: 15px;
+    .title {
       font-size: $heading-font-sm;
-      font-weight: 400;
-      font-style: normal;
+    }
+    .subtitle {
+      color: $color_light_grey;
+      font-size: $text-font-md;
+      .alert {
+        color: $color_light_red;
+      }
     }
   }
-  .bulletin-board-daily {
-    @include flex(column, flex-start, flex-start);
-    margin-bottom: 20px;
-    .bulletin-board-date {
-      @include flex(row, flex-start, center);
-      font-size: $text-font-sm;
-      margin-bottom: 3px;
-      hr {
-        margin-left: 15px;
-        width: 200px;
-        border: none;
-        height: 1px;
-        color: $color_black;
-        background-color: $color_black;
-      }
-    }
-    .bulletin-board-title {
-      font-size: $text-font-xs;
-      color: $color_blue;
-      margin-bottom: 6px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    .bulletin-board-content {
-      font-size: $text-font-xs;
+  .img-upload {
+    @include flex(row, flex-start, center);
+    margin-left: 120px;
+    margin-bottom: 15px;
+    .img-intro {
+      margin-left: 20px;
+      color: $color_light_grey;
+      font-size: 14px;
     }
   }
 }

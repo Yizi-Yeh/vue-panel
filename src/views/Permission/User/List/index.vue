@@ -1,5 +1,5 @@
 <template>
-<el-card  id="permission-wrap" class="box-card">
+  <el-card id="permission-wrap" class="box-card">
     <div class="permission-content">
       <el-row class="top-row">
         <el-col :span="20"
@@ -73,42 +73,43 @@
             :data="tableData"
             style="width: 100%"
           >
-            <el-table-column label="項目" width="50">
+            <el-table-column label="項目" width="60">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.item }}</span>
+                <span>{{ scope.row.item }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="帳號" width="120">
+            <el-table-column label="帳號" width="130">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.account }}</span>
+                <span>{{ scope.row.account }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="單位" width="160">
+            <el-table-column label="單位" width="170">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.company }}</span>
+                <span>{{ scope.row.company }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="姓名" width="100">
+            <el-table-column label="姓名" width="90">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.name }}</span>
+                <span>{{ scope.row.name }}</span>
               </template>
             </el-table-column>
             <el-table-column label="部門" width="100">
               <template #default="scope">
-                <span style="margin-left: 10px">{{
-                  scope.row.department
-                }}</span>
+                <span>{{ scope.row.department }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="權限" width="120">
+            <el-table-column label="權限" width="100">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.auth }}</span>
+                <span>{{ scope.row.auth }}</span>
               </template>
             </el-table-column>
 
-            <el-table-column label="動作" width="80">
+            <el-table-column label="動作" width="100">
               <template #default="">
-                <i     @click="$router.push({ path: `edit/:id` })" class="fas fa-pen"></i>
+                <i
+                  @click="$router.push({ path: `edit/:id` })"
+                  class="fas fa-pen"
+                ></i>
                 <i class="far fa-trash-alt"></i>
               </template>
             </el-table-column>
@@ -183,16 +184,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/main.scss";
 #permission-wrap {
   margin: 5px 20px;
   border-radius: 15px;
   .permission-content {
-    padding:  10px;
+    padding: 5px 10px;
   }
   .top-row {
     @include flex(row, space-between, flex-start);
+    margin-top: -10px;
   }
   .top-col {
     margin-top: 20px;
@@ -205,9 +207,13 @@ export default {
     padding: 0px;
     margin-bottom: 20px;
     @include flex(row, space-between, flex-start);
-    .el-input__inner {
-      border: none;
-      color: $color_grey !important;
+    .second-col {
+      .el-input__inner {
+        border: none;
+      }
+      .el-input__suffix {
+        right: 28px;
+      }
     }
   }
 }

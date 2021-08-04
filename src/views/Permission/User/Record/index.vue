@@ -23,32 +23,29 @@
             <el-date-picker
               v-model="value1"
               type="date"
-              placeholder="請選擇日期"
+              placeholder="日期｜ 請選擇日期"
             >
             </el-date-picker>
           </div>
-          </el-col>
-          <el-col :span="20">
-            <el-time-picker
-              is-range
-              v-model="value1"
-              range-separator="至"
-              start-placeholder="開始時間"
-              end-placeholder="結束時間"
-              placeholder="選擇時間範圍"
-            >
-            </el-time-picker>
-          </el-col>
+        </el-col>
+        <el-col :span="20">
+          <el-time-picker
+            is-range
+            v-model="value1"
+            range-separator="至"
+            start-placeholder="時間（起）"
+            end-placeholder="時間（迄）"
+          >
+          </el-time-picker>
+        </el-col>
 
         <el-col :span="4">
           <el-button
             type="primary"
             icon="el-icon-search"
-            @click="$router.push({ path: `add` })"
             >查詢
           </el-button>
         </el-col>
-
       </el-row>
       <el-row offest="1">
         <el-col :span="24">
@@ -59,40 +56,40 @@
           >
             <el-table-column label="項目" width="50">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.item }}</span>
+                <span>{{ scope.row.item }}</span>
               </template>
             </el-table-column>
             <el-table-column label="帳號" width="120">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.account }}</span>
+                <span>{{ scope.row.account }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="單位" width="160">
+            <el-table-column label="單位" width="150">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.company }}</span>
+                <span >{{ scope.row.company }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="姓名" width="70">
+            <el-table-column label="姓名" width="80">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.name }}</span>
+                <span>{{ scope.row.name }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="類別" width="60">
+            <el-table-column label="類別" width="80">
               <template #default="scope">
-                <span style="margin-left: 10px">{{
+                <span >{{
                   scope.row.department
                 }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="狀態" width="60">
+            <el-table-column label="狀態" width="80">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.auth }}</span>
+                <span >{{ scope.row.auth }}</span>
               </template>
             </el-table-column>
 
-             <el-table-column label="時間" width="210">
+            <el-table-column label="時間" width="220">
               <template #default="scope">
-                <span style="margin-left: 10px">{{ scope.row.time }}</span>
+                <span>{{ scope.row.time }}</span>
               </template>
             </el-table-column>
           </el-table>
@@ -143,7 +140,6 @@ export default {
           auth: '登出',
           time: '2021-09-03 14:30:56'
         }
-
       ]
     }
   },
@@ -163,15 +159,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/main.scss";
 #permission-wrap {
   margin: 5px 20px;
   border-radius: 15px;
   .permission-content {
-    padding: 10px;
+    padding: 5px 10px;
   }
   .top-row {
+    margin-top: -10px;
     @include flex(row, space-between, flex-start);
   }
   .top-col {
@@ -185,9 +182,6 @@ export default {
     padding: 0px;
     margin-bottom: 20px;
     @include flex(row, space-between, flex-start);
-    .el-input__inner {
-      color: $color_grey !important;
-    }
   }
 }
 </style>

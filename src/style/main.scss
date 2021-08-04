@@ -8,8 +8,6 @@ a:visited {
   color: $color_blue;
 }
 
-
-
 .el-button,
 .el-button:focus,
 .el-button.is-active,
@@ -41,11 +39,18 @@ a:visited {
 .el-button--primary.is-disabled {
   background: $color_white;
   border-color: $color_blue;
-  color:$color_blue;
+  color: $color_blue;
 }
 
 .el-input__inner:focus {
   border-color: #1db0dc;
+}
+
+.el-input--suffix .el-input__inner {
+  padding-right: 0px;
+}
+.el-col-5 {
+  width: 17.83333%;
 }
 
 th {
@@ -54,13 +59,47 @@ th {
 
 i {
   font-size: $text-font-md;
-  margin-right: 15px;
+  margin-right: 8px;
   cursor: pointer;
 }
 
-.el-input--suffix .el-input__inner {
-    padding-right: 0px;
+h1 {
+  font-size: $heading-font-sm;
+  font-weight: 400;
+  font-style: normal;
 }
-.el-col-5 {
-    width: 17.83333%;
+.img-inputer {
+  position: relative;
+  height: 115px;
+  width: 115px;
+  border: 2px solid #40b2f8;
+  background-color: #e9f8fc;
+  &::after {
+    content: "";
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    z-index: 2;
+    background-color: #40b2f8;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  &::before {
+    content: "＋";
+    font-size: 22px;
+    position: absolute;
+    z-index: 3;
+    color: $color_white;
+    font-weight: bolder;
+    transform: translate(-50%, -50%);
+  }
+}
+.img-inputer__placeholder {
+  font-size: $text-font-lg !important;
+  color: $color_blue !important;
+}
+
+.form-title{
+  color: $color_light_grey;
+  font-size: $text-font-md;
 }
