@@ -32,14 +32,12 @@
 
       <el-row class="tac">
         <el-col :span="24">
-          <el-menu
-            class="el-menu-vertical-demo"
-          >
+          <el-menu class="el-menu-vertical-demo">
             <el-submenu index="1">
               <template slot="title">
                 <span>行政管理系統</span>
               </template>
-               <el-submenu index="1-1">
+              <el-submenu index="1-1">
                 <template slot="title">停車場管理</template>
                 <el-menu-item index="1-1">車牌白名單</el-menu-item>
                 <el-menu-item index="1-3">停管系統後台</el-menu-item>
@@ -48,8 +46,19 @@
                 <template slot="title">門禁管理</template>
                 <el-menu-item index="1-1">管制狀態</el-menu-item>
                 <el-menu-item index="1-2">白名單</el-menu-item>
-                <router-link to="/adminmanagement/access-control/access-white-list/add"><el-menu-item index="1-3">新增門禁白名單</el-menu-item></router-link>
-                <el-menu-item index="1-4">緊急控管</el-menu-item>
+                <router-link
+                  to="/adminmanagement/access-control/access-white-list/add"
+                  ><el-menu-item index="1-3"
+                    >新增門禁白名單</el-menu-item
+                  ></router-link
+                >
+                <router-link
+                  to="/adminmanagement/access-control/emergency-release"
+                >
+                  <el-menu-item index="1-4">
+                    緊急控管</el-menu-item
+                  ></router-link
+                >
                 <el-menu-item index="1-5">後台管理</el-menu-item>
               </el-submenu>
               <el-submenu index="1-3">
@@ -58,7 +67,7 @@
                 <el-menu-item index="1-2">黑名單</el-menu-item>
                 <el-menu-item index="1-3">訪客管理</el-menu-item>
               </el-submenu>
-               <el-submenu index="1-4">
+              <el-submenu index="1-4">
                 <template slot="title">資源管理</template>
                 <el-menu-item index="1-1">總覽</el-menu-item>
                 <el-menu-item index="1-2">資源管理</el-menu-item>

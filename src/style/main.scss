@@ -104,9 +104,9 @@ h1 {
   font-size: $text-font-md;
 }
 
-.el-input__inner{
+.el-input__inner {
   border: 1px solid $color_grey;
-  &:hover{
+  &:hover {
     border: 1px solid $color_grey;
   }
 }
@@ -124,7 +124,7 @@ h1 {
   height: 20px;
   border-radius: 50%;
   border: 1px solid $color_grey;
-  display: none;
+  // display: none;
   &::after {
     box-sizing: content-box;
     content: "";
@@ -140,7 +140,6 @@ h1 {
     transition: transform 0.15s ease-in 0.05s;
     transform-origin: center;
     font-weight: 800;
-
   }
 }
 
@@ -148,7 +147,7 @@ h1 {
 .el-checkbox__input.is-indeterminate .el-checkbox__inner {
   background-color: $color_blue;
   border-color: $color_light_blue;
-  display: block;
+  // display: block;
 }
 .el-checkbox__input.is-checked + .el-checkbox__label {
   color: $color_blue;
@@ -176,3 +175,42 @@ h1 {
   }
 }
 
+.el-menu {
+  border-right: solid 1px #e6e6e6;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: transparent;
+}
+
+.el-submenu__title {
+  font-size: 18px;
+  text-align: center;
+  color: $color_blue;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  box-sizing: border-box;
+}
+
+.el-submenu__title:focus,
+.el-submenu__title:hover {
+  outline: 0;
+  background-color: #ecf5ff;
+}
+
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  width: 277px;
+  line-height: normal;
+  display: inline-table;
+  border-collapse: separate;
+  border-spacing: 0;
+
+}
+.el-date-editor{
+  margin-right: 20px;
+}
+.el-checkbox{
+  float: left;
+}

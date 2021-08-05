@@ -229,16 +229,16 @@ const routes = [
           ]
         }
       },
-      {
-        path: '/adminmanagement/access-control/access-white-list/:id',
-        name: 'AccessWhiteListCheck',
-        hidden: true,
-        component: () => import('@/views/AdminManagement/AccessWhiteList/View/index.vue'),
-        meta: {
-          title: '行政管理系統-門禁管理-查看單筆門禁白名單',
-          permissions: ['Read LicenseWhiteList']
-        }
-      },
+      // {
+      //   path: '/adminmanagement/access-control/access-white-list/:id',
+      //   name: 'AccessWhiteListCheck',
+      //   hidden: true,
+      //   component: () => import('@/views/AdminManagement/AccessWhiteList/View/index.vue'),
+      //   meta: {
+      //     title: '行政管理系統-門禁管理-查看單筆門禁白名單',
+      //     permissions: ['Read LicenseWhiteList']
+      //   }
+      // },
       {
         path: '/adminmanagement/access-control/access-white-list/add',
         name: 'AccessWhiteListAdd',
@@ -293,6 +293,21 @@ const routes = [
         meta: {
           title: '行政管理系統-停車場管理-停管系統後台-查看單筆過期白名單歷史紀錄',
           permissions: ['Read LicenseWhiteList']
+        }
+      },
+      {
+        // 行政管理系統-門禁管理-緊急控管
+        path: '/adminmanagement/access-control/emergency-release',
+        name: 'AccessWhiteList',
+        component: () => import('@/views/AdminManagement/EmergencyRelease/List/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-緊急控管',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
         }
       }
     ]
