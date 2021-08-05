@@ -84,7 +84,10 @@
 
             <el-col :span="12">
               <el-form-item class="form-item" required prop="category">
-                <el-select placeholder="請選擇類別＊｜" v-model="ruleForm.category">
+                <el-select
+                  placeholder="請選擇類別＊｜"
+                  v-model="ruleForm.category"
+                >
                   <!-- <template slot="prefix" class="prefix-left">
                     類別 <span style="color: #ED6363">＊ </span
                     ><span>｜</span></template
@@ -176,11 +179,16 @@
               </el-form-item>
             </el-col>
             <el-col :span="24" style="margin-bottom:10px">
-              <el-checkbox v-model="ruleForm.checked">無限制終止日期</el-checkbox>
+              <el-checkbox v-model="ruleForm.checked"
+                >無限制終止日期</el-checkbox
+              >
             </el-col>
             <el-col :span="24">
-              <el-form-item class="form-item" required prop="auth" >
-                <el-select placeholder="請選擇權限區域＊｜" v-model="ruleForm.auth">
+              <el-form-item class="form-item" required prop="auth">
+                <el-select
+                  placeholder="請選擇權限區域＊｜"
+                  v-model="ruleForm.auth"
+                >
                   <!-- <template slot="prefix"
                     >權限 <span style="color: #ED6363">＊ </span
                     ><span>｜</span></template
@@ -196,11 +204,18 @@
               </el-form-item>
             </el-col>
 
-            <el-checkbox-group v-model="ruleForm.region" required prop="region">
-              <el-col :span="4"
-                ><el-checkbox label="E1-1" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
+            <!-- <el-checkbox-group  required prop="region"> -->
+            <el-col style="margin-bottom:20px">
+              <el-checkbox
+                v-for="item in ruleForm.regionList"
+                :key="item.region"
+                :label="item.region"
+                :value="item.region"
+                v-model="ruleForm.selectedRegion"
+                border
+              ></el-checkbox
+            ></el-col>
+            <!-- <el-col :span="4"
                 ><el-checkbox label="E1-2" border></el-checkbox
               ></el-col>
               <el-col :span="4"
@@ -229,10 +244,10 @@
               ></el-col>
               <el-col :span="4" style="margin-bottom:10px"
                 ><el-checkbox label="E1-11" border></el-checkbox
-              ></el-col>
-            </el-checkbox-group>
+              ></el-col> -->
+            <!-- </el-checkbox-group> -->
 
-            <el-col :span="24">
+            <el-col>
               <el-form-item class="form-item">
                 <el-input
                   v-model="ruleForm.memo"
@@ -289,7 +304,19 @@ export default {
         fromTime: '',
         toDate: '',
         toTime: '',
-        region: [],
+        selectedRegion: [],
+        regionList: [
+          { region: 'E1-1' },
+          { region: 'E1-2' },
+          { region: 'E1-3' },
+          { region: 'E1-4' },
+          { region: 'E1-5' },
+          { region: 'E1-6' },
+          { region: 'E1-7' },
+          { region: 'E1-8' },
+          { region: 'E1-9' },
+          { region: 'E1-10' }
+        ],
         checked: ''
       },
       rules: {
@@ -355,14 +382,15 @@ export default {
   },
   methods: {
     submitForm (ruleForm) {
-      this.$refs[ruleForm].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      //   this.$refs[ruleForm].validate((valid) => {
+      //     if (valid) {
+      //       alert('submit!')
+      //     } else {
+      //       console.log('error submit!!')
+      //       return false
+      //     }
+      //   })
+      console.log(this.ruleForm.selectedRegion)
     },
     resetForm (ruleForm) {
       this.$refs[ruleForm].resetFields()
