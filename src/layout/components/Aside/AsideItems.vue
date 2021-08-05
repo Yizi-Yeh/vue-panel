@@ -24,11 +24,51 @@
         </el-menu-item-group>
       </el-submenu> -->
 
-      <el-menu-item class="layout-aside-items" index="2">
+      <!-- <el-menu-item class="layout-aside-items" index="2">
         <span slot="title">
           <router-link to="/adminmanagement">行政管理系統</router-link></span
         >
-      </el-menu-item>
+      </el-menu-item> -->
+
+      <el-row class="tac">
+        <el-col :span="24">
+          <el-menu
+            class="el-menu-vertical-demo"
+          >
+            <el-submenu index="1">
+              <template slot="title">
+                <span>行政管理系統</span>
+              </template>
+               <el-submenu index="1-1">
+                <template slot="title">停車場管理</template>
+                <el-menu-item index="1-1">車牌白名單</el-menu-item>
+                <el-menu-item index="1-3">停管系統後台</el-menu-item>
+              </el-submenu>
+              <el-submenu index="1-2">
+                <template slot="title">門禁管理</template>
+                <el-menu-item index="1-1">管制狀態</el-menu-item>
+                <el-menu-item index="1-2">白名單</el-menu-item>
+                <router-link to="/adminmanagement/access-control/access-white-list/add"><el-menu-item index="1-3">新增門禁白名單</el-menu-item></router-link>
+                <el-menu-item index="1-4">緊急控管</el-menu-item>
+                <el-menu-item index="1-5">後台管理</el-menu-item>
+              </el-submenu>
+              <el-submenu index="1-3">
+                <template slot="title">訪客系統</template>
+                <el-menu-item index="1-1">訪客登記</el-menu-item>
+                <el-menu-item index="1-2">黑名單</el-menu-item>
+                <el-menu-item index="1-3">訪客管理</el-menu-item>
+              </el-submenu>
+               <el-submenu index="1-4">
+                <template slot="title">資源管理</template>
+                <el-menu-item index="1-1">總覽</el-menu-item>
+                <el-menu-item index="1-2">資源管理</el-menu-item>
+                <el-menu-item index="1-3">建立資料</el-menu-item>
+                <el-menu-item index="1-3">管理後台</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </el-row>
       <hr />
       <el-menu-item class="layout-aside-items" index="3">
         <router-link to="/permission">權限管理</router-link>
@@ -70,8 +110,8 @@ export default {}
     color: $color_blue; /* old IE */
     background-color: $color_blue; /* Modern Browsers */
   }
-  a{
-     color: $color_blue;
+  a {
+    color: $color_blue;
   }
 }
 .router-link-active {

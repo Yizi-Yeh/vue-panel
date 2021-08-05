@@ -184,4 +184,9 @@ export default {
     @include flex(row, space-between, flex-start);
   }
 }
+i {
+  font-size: $text-font-md;
+  margin-right: 9px;
+  cursor: pointer;
+}
 </style>

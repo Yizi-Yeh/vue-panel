@@ -1,5 +1,5 @@
 <template>
-    <nav >
+    <nav  v-if="false">
       <el-menu class="layout-submenu">
         <el-menu-item class="layout-subitems">
           <router-link to="/adminmanagement/parking"

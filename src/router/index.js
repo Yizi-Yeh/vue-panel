@@ -68,70 +68,232 @@ const routes = [
           title: '編輯單筆佈告欄',
           permissions: ['Update Dashboard']
         }
+      }
+    ]
+  },
+  {
+    path: '/adminmanagement',
+    name: 'AdminManagement',
+    component: Layout,
+    redirect: '/adminmanagement/parking/license-white-list',
+    meta: {
+      title: '行政管理系統'
+    },
+    children: [
+      {
+        path: '/parking/license-white-list',
+        name: 'LicenseWhiteList',
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-車牌白名單',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
       },
       {
-        path: '/adminmanagement',
-        name: 'AdminManagement',
-        component: Layout,
-        redirect: '/adminmanagement/parking/license-white-list',
+        path: '/parking/license-white-list/:id',
+        name: 'LicenseWhiteListCheck',
+        hidden: true,
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/View/index.vue'),
         meta: {
-          title: 'AdminManagement'
-        },
-        children: [
-          {
-            path: '/parking/license-white-list',
-            name: 'LicenseWhiteList',
-            component: () => import('@/views/AdminManagement/LicenseWhiteList/List/index.vue'),
-            meta: {
-              title: 'LicenseWhiteList',
-              permissions: [
-                'Read LicenseWhiteList',
-                'Update LicenseWhiteList',
-                'Delete LicenseWhiteList',
-                'Create LicenseWhiteList'
-              ]
-            }
-          },
-          {
-            path: '/parking/license-white-list/:id',
-            name: 'LicenseWhiteListCheck',
-            hidden: true,
-            component: () => import('@/views/AdminManagement/LicenseWhiteList/View/index.vue'),
-            meta: {
-              title: 'LicenseWhiteListCheck',
-              permissions: ['Read LicenseWhiteList']
-            }
-          },
-          {
-            path: '/parking/license-white-list/add',
-            name: 'LicenseWhiteListAdd',
-            component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
-            meta: {
-              title: 'LicenseWhiteListAdd',
-              permissions: [
-                'Read LicenseWhiteList',
-                'Update LicenseWhiteList',
-                'Delete LicenseWhiteList',
-                'Create LicenseWhiteList'
-              ]
-            }
-          },
-          {
-            path: '/adminmanagement/parking/license-white-list/edit',
-            redirect: '/adminmanagement/parking/license-white-list/',
-            hidden: true
-          },
-          {
-            path: '/adminmanagement/parking/license-white-list/edit/:id',
-            name: 'LicenseWhiteListEdit',
-            hidden: true,
-            component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
-            meta: {
-              title: 'LicenseWhiteListEdit',
-              permissions: ['Update LicenseWhiteList']
-            }
-          }
-        ]
+          title: '行政管理系統-停車場管理-查看單筆車牌白名單',
+          permissions: ['Read LicenseWhiteList']
+        }
+      },
+      {
+        path: '/parking/license-white-list/add',
+        name: 'LicenseWhiteListAdd',
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-新增車牌白名單',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        path: '/adminmanagement/parking/license-white-list/edit',
+        redirect: '/adminmanagement/parking/license-white-list/',
+        hidden: true
+      },
+      {
+        path: '/adminmanagement/parking/license-white-list/edit/:id',
+        name: 'LicenseWhiteListEdit',
+        hidden: true,
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-編輯單筆車牌白名單',
+          permissions: ['Update LicenseWhiteList']
+        }
+      },
+      {
+        path: '/parking/license-admin',
+        name: 'LicenseAdmin',
+        // 畫面雖然相同，但抓的資料不同，所以需要另外一個頁面
+        component: () => import('@/views/AdminManagement/LicenseAdmin/List/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-停管系統後台',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        path: '/parking/license-admin/:id',
+        name: 'LicenseWhiteListCheck',
+        hidden: true,
+        // 查看單筆車牌白名單
+        component: () => import('@/views/AdminManagement/LicenseAdmin/View/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-停管系統後台-查看單筆車牌白名單',
+          permissions: ['Read LicenseWhiteList']
+        }
+      },
+      {
+        path: '/parking/license-admin/add',
+        name: 'LicenseWhiteListAdd',
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/Add/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-新增車牌白名單',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        path: '/adminmanagement/parking/license-white-list/edit',
+        redirect: '/adminmanagement/parking/license-white-list/',
+        hidden: true
+      },
+      {
+        path: '/adminmanagement/parking/license-white-list/edit/:id',
+        name: 'LicenseWhiteListEdit',
+        hidden: true,
+        component: () => import('@/views/AdminManagement/LicenseWhiteList/Edit/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-編輯單筆車牌白名單',
+          permissions: ['Update LicenseWhiteList']
+        }
+      }
+    ]
+  },
+  {
+    path: '/adminmanagement/access-control',
+    name: 'AdminManagement',
+    component: Layout,
+    redirect: '/adminmanagement/access-control/equipment-control',
+    meta: {
+      title: '行政管理系統-門禁管理'
+    },
+    children: [
+      {
+        // 行政管理系統-門禁管理-管制狀態
+        path: '/adminmanagement/access-control/equipment-control',
+        name: 'EquipmentControl',
+        component: () => import('@/views/AdminManagement/EquipmentControl/List/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-管制狀態',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        // 行政管理系統-門禁管理-白名單
+        path: '/adminmanagement/access-control/access-white-list',
+        name: 'AccessWhiteList',
+        component: () => import('@/views/AdminManagement/AccessWhiteList/List/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-白名單(總覽)',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        path: '/adminmanagement/access-control/access-white-list/:id',
+        name: 'AccessWhiteListCheck',
+        hidden: true,
+        component: () => import('@/views/AdminManagement/AccessWhiteList/View/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-查看單筆門禁白名單',
+          permissions: ['Read LicenseWhiteList']
+        }
+      },
+      {
+        path: '/adminmanagement/access-control/access-white-list/add',
+        name: 'AccessWhiteListAdd',
+        component: () => import('@/views/AdminManagement/AccessWhiteList/Add/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-新增門禁白名單',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        path: '/adminmanagement/access-control/access-white-list/edit',
+        redirect: '/adminmanagement/access-control/access-white-list/',
+        hidden: true
+      },
+      {
+        path: '/adminmanagement/access-control/access-white-list/edit/:id',
+        name: 'AccessWhiteLisListEdit',
+        hidden: true,
+        component: () => import('@/views/AdminManagement/AccessWhiteList/Edit/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-編輯單筆門禁白名單',
+          permissions: ['Update LicenseWhiteList']
+        }
+      },
+      {
+        path: '/adminmanagement/access-control/access-white-list/invalid-histoty',
+        name: 'AccessWhiteListInvalid',
+        // 過期門禁白名單的資料
+        component: () => import('@/views/AdminManagement/AccessWhiteList/InvalidHistoty/List/index.vue'),
+        meta: {
+          title: '行政管理系統-門禁管理-查看過期白名單歷史紀錄',
+          permissions: [
+            'Read LicenseWhiteList',
+            'Update LicenseWhiteList',
+            'Delete LicenseWhiteList',
+            'Create LicenseWhiteList'
+          ]
+        }
+      },
+      {
+        // 查看過期單筆門禁白名單的紀錄（過期的）
+        path: '/adminmanagement/access-control/access-white-list/invalid-histoty/:id',
+        name: 'AccessWhiteListInvalidCheck',
+        hidden: true,
+        // 查看過期單筆車牌白名單
+        component: () => import('@/views/AdminManagement/AccessWhiteList/InvalidHistoty/View/index.vue'),
+        meta: {
+          title: '行政管理系統-停車場管理-停管系統後台-查看單筆過期白名單歷史紀錄',
+          permissions: ['Read LicenseWhiteList']
+        }
       }
     ]
   },
@@ -214,7 +376,6 @@ const routes = [
       }
     ]
   }
-
 ]
 
 const router = new VueRouter({

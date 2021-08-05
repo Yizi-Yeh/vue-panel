@@ -27,9 +27,10 @@
           </div>
         </el-col>
       </el-row>
+
       <el-row class="second-row">
-        <el-col class="second-col" :span="19">
-          <el-select v-model="value" placeholder="請選擇單位">
+        <el-col class="second-col-1" :span="21" >
+          <el-select  v-model="value" placeholder="請選擇單位" style="border:none">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -57,7 +58,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="5" class="second-col">
+        <el-col :span="4" class="second-col-2">
           <el-button
             type="primary"
             icon="el-icon-plus"
@@ -206,15 +207,26 @@ export default {
   .second-row {
     padding: 0px;
     margin-bottom: 20px;
+    // border: 1px solid firebrick;
     @include flex(row, space-between, flex-start);
-    .second-col {
-      .el-input__inner {
-        border: none;
-      }
-      .el-input__suffix {
-        right: 28px;
+    .second-col-1 {
+      .el-select {
+        .el-input.el-input--suffix {
+          .el-input__inner {
+            border: none !important;
+          }
+          .el-input__suffix {
+            right: 49px;
+            transition: all 0.3s;
+          }
+        }
       }
     }
   }
+}
+i {
+  font-size: $text-font-md;
+  margin-right: 14px;
+  cursor: pointer;
 }
 </style>

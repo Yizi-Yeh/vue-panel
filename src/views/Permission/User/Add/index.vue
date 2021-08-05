@@ -1,7 +1,7 @@
 <template>
   <el-card id="permission-wrap" class="box-card">
     <el-row class="add-user-title">
-      <el-col :span="4"><h1 class="title">新增帳號</h1></el-col>
+      <el-col offset="1" :span="4"><h1 class="title">新增帳號</h1></el-col>
       <el-col :span="8"
         ><span class="subtitle"
           >標示<span class="alert"> ＊ </span>為必填</span
@@ -10,7 +10,7 @@
     </el-row>
 
     <el-row class="img-upload">
-      <el-col :span="5">
+      <el-col :span="4" :offset="5">
         <img-inputer
           style="height:115px ;width:115px"
           v-model="file"
@@ -20,7 +20,7 @@
           placeholder="頭像"
         />
       </el-col>
-      <el-col :span="20">
+      <el-col :span="10" :offset="1">
         <span class="img-intro"
           >個人頭像上傳：格式可接受jpg. png，檔案大小限制為700kb~5mb</span
         >
@@ -57,15 +57,16 @@
 
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
-                <el-select v-model="imgSize" placeholder="">
-                  <template slot="prefix">單位<span style="color: #ED6363">＊</span></template>
-                  <el-option label="XXX股份有限公司" value="M"></el-option>
-                  <el-option label="OOO股份有限公司" value="L"></el-option>
+                <el-select placeholder="">
+                  <template slot="prefix"
+                    >單位 <span style="color: #ED6363">＊ </span
+                    ><span>｜</span></template
+                  >
+                  <el-option label="XXX股份有限公司" value="1"></el-option>
+                  <el-option label="OOO股份有限公司" value="2"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
-          </el-row>
-          <el-row>
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
                 <el-input
@@ -140,43 +141,158 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="pass">
-                <el-input
-                  v-model="ruleForm.pass"
-                  autocomplete="off"
-                  placeholder="請輸入密碼"
-                >
-                  <template slot="prepend"
-                    >密碼 <span style="color: #ED6363">＊</span></template
-                  ></el-input
-                >
-              </el-form-item>
+              <el-col :span="18">
+                <el-form-item class="form-item" required prop="pass">
+                  <el-input
+                    v-model="ruleForm.pass"
+                    autocomplete="off"
+                    placeholder="請輸入密碼"
+                  >
+                    <template slot="prepend"
+                      >密碼 <span style="color: #ED6363">＊</span></template
+                    ></el-input
+                  >
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-button type="primary">隨機</el-button>
+              </el-col>
             </el-col>
-          </el-row>
-          <el-row>
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
-                <el-input
-                  v-model="ruleForm.pass"
-                  autocomplete="off"
-                  placeholder="請選擇權限組別"
-                >
-                  <template slot="prepend"
-                    >權限組別 <span style="color: #ED6363">＊</span></template
-                  ></el-input
-                >
+                <el-select placeholder="">
+                  <template slot="prefix"
+                    >權限類別 <span style="color: #ED6363">＊ </span
+                    ><span>｜</span></template
+                  >
+                  <el-option label="XXX股份有限公司" value="1"></el-option>
+                  <el-option label="OOO股份有限公司" value="2"></el-option>
+                </el-select>
               </el-form-item>
             </el-col>
 
             <el-col :span="12">
               <el-form-item class="form-item" required prop="pass">
+                <el-select placeholder="">
+                  <template slot="prefix"
+                    >類別 <span style="color: #ED6363">＊ </span
+                    ><span>｜</span></template
+                  >
+                  <el-option label="XXX股份有限公司" value="1"></el-option>
+                  <el-option label="OOO股份有限公司" value="2"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="24">
+              <div class="permission-select">
+                <span
+                  >請選擇權限內容<span style="color: #ED6363">＊ </span></span
+                >
+              </div>
+            </el-col>
+          </el-row>
+          <div class="permission-select-group">
+            <el-row :gutter="30" >
+              <el-col :span="8">
+                <el-checkbox
+                  v-model="checked1"
+                  label="行政管理系統管理權限"
+                  border
+                ></el-checkbox>
+              </el-col>
+              <el-col :span="8">
+                <el-checkbox
+                  v-model="checked2"
+                  label="行政管理系統新增權限"
+                  border
+                ></el-checkbox>
+              </el-col>
+              <el-col :span="8">
+                <el-checkbox
+                  v-model="checked3"
+                  label="行政管理系統人員權限"
+                  border
+                ></el-checkbox>
+              </el-col>
+
+              <el-col :span="8"
+                ><el-checkbox
+                  v-model="checked4"
+                  label="行政管理系統申請權限"
+                  border
+                ></el-checkbox
+              ></el-col>
+
+              <el-col :span="8"
+                ><el-checkbox
+                  v-model="checked4"
+                  label="設定管理權限"
+                  border
+                ></el-checkbox
+              ></el-col>
+
+              <el-col :span="8"
+                ><el-checkbox
+                  v-model="checked4"
+                  label="帳號申請權限"
+                  border
+                ></el-checkbox
+              ></el-col>
+
+              <el-col :span="8"
+                ><el-checkbox
+                  v-model="checked4"
+                  label="單位管理權限"
+                  border
+                ></el-checkbox
+              ></el-col>
+
+              <el-col :span="8">
+                <el-checkbox
+                  v-model="checked4"
+                  label="權限管理群組"
+                  border
+                ></el-checkbox
+              ></el-col>
+
+              <el-col :span="8">
+                <el-checkbox
+                  v-model="checked4"
+                  label="設定群組"
+                  border
+                ></el-checkbox
+              ></el-col>
+            </el-row>
+          </div>
+        </el-form>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-title">
+        <span>備註資料</span>
+      </div>
+
+      <div class="form-panel">
+        <el-form
+          class="form form-memo"
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          ref="ruleForm"
+        >
+          <el-row>
+            <el-col :span="24">
+              <el-form-item class="form-item" required prop="pass">
                 <el-input
                   v-model="ruleForm.pass"
                   autocomplete="off"
-                  placeholder="請選擇類別"
+                  placeholder="請輸入備註資料"
                 >
                   <template slot="prepend"
-                    >類別 <span style="color: #ED6363">＊</span></template
+                    >備註 <span style="color: #ED6363">＊</span></template
                   ></el-input
                 >
               </el-form-item>
@@ -257,7 +373,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/main.scss";
 #permission-wrap {
   margin: 5px 20px;
@@ -280,10 +396,8 @@ export default {
   }
   .img-upload {
     @include flex(row, flex-start, center);
-    margin-left: 130px;
     margin-bottom: 15px;
     .img-intro {
-      margin-left: 20px;
       color: $color_light_grey;
       font-size: 14px;
     }
@@ -301,17 +415,41 @@ export default {
       // border: 1px solid rgb(12, 11, 11);
     }
     .form-panel {
-      @include flex(column, center, center);
-      padding: 10px;
+      @include flex(column, center, flex-start);
       width: 83%;
       // border: 1px solid rgb(51, 178, 34);
       .form {
-        @include flex(column, center, center);
+        width: 100%;
+        @include flex(column, center, flex-start);
         &-item {
           margin-right: 20px;
         }
       }
     }
   }
+}
+
+.el-input__prefix {
+  background-color: transparent;
+  color: $color_blue;
+  vertical-align: middle;
+  border: 1px solid $color_grey;
+}
+
+.permission-select {
+  text-align: left;
+  color: $color_blue;
+  font-size: $text-font-md;
+  margin-bottom: 20px;
+}
+.permission-select-group {
+  text-align: center;
+  font-size: $text-font-md;
+  margin-bottom: 20px;
+}
+.el-select {
+  width: 100%;
+  display: inline-block;
+  position: relative;
 }
 </style>

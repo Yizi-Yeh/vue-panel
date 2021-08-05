@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/main.scss";
 #dashboard-wrap {
   margin: 5px 20px;
