@@ -143,6 +143,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="toDate">
                 <el-date-picker
+                  :disabled="this.ruleForm.check ? true : false"
                   v-model="ruleForm.toDate"
                   type="date"
                   placeholder="終止日期＊｜"
@@ -167,6 +168,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="toTime">
                 <el-time-select
+                  :disabled="this.ruleForm.check ? true : false"
                   v-model="ruleForm.toTime"
                   :picker-options="{
                     start: '08:30',
@@ -179,7 +181,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="24" style="margin-bottom:10px">
-              <el-checkbox v-model="ruleForm.checked"
+              <el-checkbox id="stOne" v-model="ruleForm.check"
                 >無限制終止日期</el-checkbox
               >
             </el-col>
@@ -204,9 +206,9 @@
               </el-form-item>
             </el-col>
 
-            <!-- <el-checkbox-group  required prop="region"> -->
-            <el-col style="margin-bottom:20px">
+            <el-col style="margin-bottom:15px">
               <el-checkbox
+                style="margin-bottom:20px"
                 v-for="item in ruleForm.regionList"
                 :key="item.region"
                 :label="item.region"
@@ -215,37 +217,6 @@
                 border
               ></el-checkbox
             ></el-col>
-            <!-- <el-col :span="4"
-                ><el-checkbox label="E1-2" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-3" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-4" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-5" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-6" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-7" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-8" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-9" border></el-checkbox
-              ></el-col>
-              <el-col :span="4"
-                ><el-checkbox label="E1-10" border></el-checkbox
-              ></el-col>
-              <el-col :span="4" style="margin-bottom:10px"
-                ><el-checkbox label="E1-11" border></el-checkbox
-              ></el-col> -->
-            <!-- </el-checkbox-group> -->
 
             <el-col>
               <el-form-item class="form-item">
@@ -317,7 +288,7 @@ export default {
           { region: 'E1-9' },
           { region: 'E1-10' }
         ],
-        checked: ''
+        check: false
       },
       rules: {
         name: [
@@ -381,21 +352,29 @@ export default {
     }
   },
   methods: {
+    // toggleSelect () {
+    //   var isChecked = document.getElementById('stOne').checked
+    //   document.querySelectorAll('selectOne').disabled = !isChecked
+    //   console.log(isChecked)
+    // },
     submitForm (ruleForm) {
-      //   this.$refs[ruleForm].validate((valid) => {
-      //     if (valid) {
-      //       alert('submit!')
-      //     } else {
-      //       console.log('error submit!!')
-      //       return false
-      //     }
-      //   })
+      this.$refs[ruleForm].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
       console.log(this.ruleForm.selectedRegion)
     },
     resetForm (ruleForm) {
       this.$refs[ruleForm].resetFields()
     }
   }
+  //   created () {
+  //     this.toggleSelect()
+  //   }
 }
 </script>
 <style lang="scss" scoped>
