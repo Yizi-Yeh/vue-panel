@@ -93,11 +93,11 @@
                     ><span>｜</span></template
                   > -->
                   <el-option
-                    v-for="item in ruleForm.categoryOptions"
+                    v-for="item in categoryOptions"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >
+                  >{{item.label}}
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -143,7 +143,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="toDate">
                 <el-date-picker
-                  :disabled="this.ruleForm.check ? true : false"
+                  :disabled="check ? true : false"
                   v-model="ruleForm.toDate"
                   type="date"
                   placeholder="終止日期＊｜"
@@ -168,7 +168,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="toTime">
                 <el-time-select
-                  :disabled="this.ruleForm.check ? true : false"
+                  :disabled="check ? true : false"
                   v-model="ruleForm.toTime"
                   :picker-options="{
                     start: '08:30',
@@ -181,7 +181,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="24" style="margin-bottom:10px">
-              <el-checkbox id="stOne" v-model="ruleForm.check"
+              <el-checkbox id="stOne" v-model="check"
                 >無限制終止日期</el-checkbox
               >
             </el-col>
@@ -196,11 +196,11 @@
                     ><span>｜</span></template
                   > -->
                   <el-option
-                    v-for="item in ruleForm.authOptions"
+                    v-for="item in authOptions"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >
+                  >{{item.label}}
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -209,7 +209,7 @@
             <el-col style="margin-bottom:15px">
               <el-checkbox
                 style="margin-bottom:20px"
-                v-for="item in ruleForm.regionList"
+                v-for="item in regionList"
                 :key="item.region"
                 :label="item.region"
                 :value="item.region"
@@ -252,22 +252,6 @@ export default {
         company: '',
         department: '',
         employeeId: '',
-        categoryOptions: [
-          {
-            value: 'employee',
-            label: '員工'
-          },
-          {
-            value: 'vendor',
-            label: '廠商'
-          }
-        ],
-        authOptions: [
-          {
-            value: 'random',
-            label: '自訂'
-          }
-        ],
         category: '',
         cardId: '',
         apply: '',
@@ -275,21 +259,38 @@ export default {
         fromTime: '',
         toDate: '',
         toTime: '',
-        selectedRegion: [],
-        regionList: [
-          { region: 'E1-1' },
-          { region: 'E1-2' },
-          { region: 'E1-3' },
-          { region: 'E1-4' },
-          { region: 'E1-5' },
-          { region: 'E1-6' },
-          { region: 'E1-7' },
-          { region: 'E1-8' },
-          { region: 'E1-9' },
-          { region: 'E1-10' }
-        ],
-        check: false
+        auth: '',
+        selectedRegion: []
       },
+      check: false,
+      regionList: [
+        { region: 'E1-1' },
+        { region: 'E1-2' },
+        { region: 'E1-3' },
+        { region: 'E1-4' },
+        { region: 'E1-5' },
+        { region: 'E1-6' },
+        { region: 'E1-7' },
+        { region: 'E1-8' },
+        { region: 'E1-9' },
+        { region: 'E1-10' }
+      ],
+      categoryOptions: [
+        {
+          value: 'employee',
+          label: '員工'
+        },
+        {
+          value: 'vendor',
+          label: '廠商'
+        }
+      ],
+      authOptions: [
+        {
+          value: 'random',
+          label: '自訂'
+        }
+      ],
       rules: {
         name: [
           { required: true, message: '請輸入姓名', trigger: 'blur' },
@@ -352,29 +353,21 @@ export default {
     }
   },
   methods: {
-    // toggleSelect () {
-    //   var isChecked = document.getElementById('stOne').checked
-    //   document.querySelectorAll('selectOne').disabled = !isChecked
-    //   console.log(isChecked)
-    // },
     submitForm (ruleForm) {
-      this.$refs[ruleForm].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-      console.log(this.ruleForm.selectedRegion)
+    //   this.$refs[ruleForm].validate((valid) => {
+    //     if (valid) {
+    //       alert('submit!')
+    //     } else {
+    //       console.log('error submit!!')
+    //       return false
+    //     }
+    //   })
+      console.log(this.ruleForm)
     },
     resetForm (ruleForm) {
       this.$refs[ruleForm].resetFields()
     }
   }
-  //   created () {
-  //     this.toggleSelect()
-  //   }
 }
 </script>
 <style lang="scss" scoped>
