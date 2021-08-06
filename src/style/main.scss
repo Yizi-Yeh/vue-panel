@@ -151,6 +151,7 @@ h1 {
 }
 .el-checkbox__input.is-checked + .el-checkbox__label {
   color: $color_blue;
+  padding-left: 10px;
 }
 .el-checkbox.is-bordered.is-checked {
   border-color: $color_blue;
@@ -206,20 +207,21 @@ h1 {
   display: inline-table;
   border-collapse: separate;
   border-spacing: 0;
-
 }
+
 .el-date-editor{
   margin-right: 20px;
 }
+
 .el-checkbox{
   float: left;
 }
-
-// .el-input__prefix {
-//   left: 20px;
-//   transition: all .3s;
-//   color: $color_blue;
-// }
+.el-checkbox__label {
+  display: inline-block;
+  line-height: 19px;
+  font-size: 14px;
+  padding-left: 0px;
+}
 
 .prefix-left{
   left: 20px !important;
@@ -227,4 +229,6 @@ h1 {
 
 .el-checkbox.is-bordered+.el-checkbox.is-bordered {
   margin-left: -1px;
+
 }
+

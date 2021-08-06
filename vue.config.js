@@ -5,7 +5,7 @@ module.exports = {
     proxy: {
       // 設定代理
       '/api': {
-        target: 'https://happy-counter.herokuapp.com/Counter/', // 介面的域名
+        target: 'http://localhost:3034/', // 介面的域名
         changeOrigin: true,
         ws: true,
         pathRewrite: {

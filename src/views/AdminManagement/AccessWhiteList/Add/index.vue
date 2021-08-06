@@ -302,7 +302,6 @@ export default {
           label: '自訂'
         }
       ],
-
       rules: {
         name: [
           { required: true, message: '請輸入姓名', trigger: 'blur' },
@@ -373,37 +372,41 @@ export default {
       })
       this.axios
         .post(
-          `${process.env.VUE_APP_API_ENDPOINT}/Create/`,
-          this.accessWhitelisting
+        `${process.env.VUE_APP_API_ENDPOINT}/api/form/`,
+        //   `${process.env.VUE_APP_API_ENDPOINT}/Create/`,
+        this.accessWhitelisting
         )
         .then((res) => {
-          if (res.data.status) {
+          if (res.data.success) {
             this.$swal.fire({
               icon: 'success',
-              title: '新增成功',
-              text: '成功送出資料'
+              title: '門禁白名單新增成功',
+              text: '已成功新增人員',
+              confirmButtonColor: '#1DB0DD',
+              confirmButtonText: 'OK'
             })
           } else {
             this.$swal.fire({
               icon: 'error',
-              title: '新增失敗',
-              text: res.data.error_msg
+              title: '門禁白名單新增失敗',
+              confirmButtonColor: '#1DB0DD',
+              confirmButtonText: 'OK'
             })
           }
         })
         .catch((err) => {
           this.$swal({
             icon: 'error',
-            title: '新增失敗',
-            text: err.response.data.message
+            title: '門禁白名單新增失敗',
+            text: err.response.data.message,
+            confirmButtonColor: '#1DB0DD',
+            confirmButtonText: 'OK'
           })
         })
     },
-
     resetForm (accessWhitelisting) {
       this.$refs[accessWhitelisting].resetFields()
     }
-
   }
 }
 </script>
