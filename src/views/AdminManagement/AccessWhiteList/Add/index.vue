@@ -20,16 +20,16 @@
       <div class="form-panel">
         <el-form
           class="form"
-          :model="ruleForm"
+          :model="accessWhitelisting"
           status-icon
           :rules="rules"
-          ref="ruleForm"
+          ref="accessWhitelisting"
         >
           <el-row>
             <el-col :span="12">
               <el-form-item class="form-item" required prop="name">
                 <el-input
-                  v-model="ruleForm.name"
+                  v-model="accessWhitelisting.name"
                   autocomplete="off"
                   placeholder="請輸入姓名"
                 >
@@ -43,7 +43,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="company">
                 <el-input
-                  v-model="ruleForm.company"
+                  v-model="accessWhitelisting.company"
                   autocomplete="off"
                   placeholder="請輸入單位"
                 >
@@ -57,7 +57,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="department">
                 <el-input
-                  v-model="ruleForm.department"
+                  v-model="accessWhitelisting.department"
                   autocomplete="off"
                   placeholder="請輸入部門名稱"
                 >
@@ -71,7 +71,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="employeeId">
                 <el-input
-                  v-model="ruleForm.employeeId"
+                  v-model="accessWhitelisting.employeeId"
                   autocomplete="off"
                   placeholder="請輸入工號"
                 >
@@ -86,7 +86,7 @@
               <el-form-item class="form-item" required prop="category">
                 <el-select
                   placeholder="請選擇類別＊｜"
-                  v-model="ruleForm.category"
+                  v-model="accessWhitelisting.category"
                 >
                   <!-- <template slot="prefix" class="prefix-left">
                     類別 <span style="color: #ED6363">＊ </span
@@ -97,7 +97,7 @@
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >{{item.label}}
+                    >{{ item.label }}
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -106,7 +106,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="cardId">
                 <el-input
-                  v-model="ruleForm.cardId"
+                  v-model="accessWhitelisting.cardId"
                   autocomplete="off"
                   placeholder="請輸入卡號"
                 >
@@ -119,7 +119,7 @@
             <el-col :span="24">
               <el-form-item class="form-item" required prop="apply">
                 <el-input
-                  v-model="ruleForm.apply"
+                  v-model="accessWhitelisting.apply"
                   autocomplete="off"
                   placeholder="請輸入申請事由"
                 >
@@ -130,10 +130,12 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="fromDate">
+              <el-form-item class="form-item" prop="fromDate">
                 <el-date-picker
-                  v-model="ruleForm.fromDate"
+                  v-model="accessWhitelisting.fromDate"
                   type="date"
+                  format="yyyy 年 MM 月 dd 日"
+                  value-format="yyyy-MM-dd"
                   placeholder="生效日期＊｜"
                 >
                 </el-date-picker>
@@ -141,24 +143,26 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="toDate">
+              <el-form-item class="form-item" prop="toDate">
                 <el-date-picker
                   :disabled="check ? true : false"
-                  v-model="ruleForm.toDate"
+                  v-model="accessWhitelisting.toDate"
                   type="date"
+                  format="yyyy 年 MM 月 dd 日"
+                  value-format="yyyy-MM-dd"
                   placeholder="終止日期＊｜"
                 >
                 </el-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="fromTime">
+              <el-form-item class="form-item" prop="fromTime">
                 <el-time-select
-                  v-model="ruleForm.fromTime"
+                  v-model="accessWhitelisting.fromTime"
                   :picker-options="{
                     start: '08:30',
                     step: '00:15',
-                    end: '18:30',
+                    end: '23:30',
                   }"
                   placeholder="生效時間＊｜"
                 >
@@ -166,14 +170,14 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="toTime">
+              <el-form-item class="form-item" prop="toTime">
                 <el-time-select
                   :disabled="check ? true : false"
-                  v-model="ruleForm.toTime"
+                  v-model="accessWhitelisting.toTime"
                   :picker-options="{
                     start: '08:30',
                     step: '00:15',
-                    end: '18:30',
+                    end: '23:30',
                   }"
                   placeholder="終止時間＊｜"
                 >
@@ -181,15 +185,13 @@
               </el-form-item>
             </el-col>
             <el-col :span="24" style="margin-bottom:10px">
-              <el-checkbox id="stOne" v-model="check"
-                >無限制終止日期</el-checkbox
-              >
+              <el-checkbox v-model="check">無限制終止日期</el-checkbox>
             </el-col>
             <el-col :span="24">
               <el-form-item class="form-item" required prop="auth">
                 <el-select
                   placeholder="請選擇權限區域＊｜"
-                  v-model="ruleForm.auth"
+                  v-model="accessWhitelisting.auth"
                 >
                   <!-- <template slot="prefix"
                     >權限 <span style="color: #ED6363">＊ </span
@@ -200,28 +202,31 @@
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >{{item.label}}
+                    >{{ item.label }}
                   </el-option>
                 </el-select>
               </el-form-item>
             </el-col>
 
             <el-col style="margin-bottom:15px">
-              <el-checkbox
-                style="margin-bottom:20px"
-                v-for="item in regionList"
-                :key="item.region"
-                :label="item.region"
-                :value="item.region"
-                v-model="ruleForm.selectedRegion"
-                border
-              ></el-checkbox
-            ></el-col>
+              <el-form-item class="form-item" prop="region">
+                <el-checkbox-group v-model="accessWhitelisting.selectedRegion">
+                  <el-checkbox
+                    style="margin-bottom:20px"
+                    v-for="item in regionList"
+                    :key="item.region"
+                    :label="item.region"
+                    :value="item.region"
+                    border
+                  ></el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+            </el-col>
 
-            <el-col>
+            <el-col :span="24">
               <el-form-item class="form-item">
                 <el-input
-                  v-model="ruleForm.memo"
+                  v-model="accessWhitelisting.memo"
                   autocomplete="off"
                   placeholder="請輸入備註資料"
                 >
@@ -231,8 +236,13 @@
             </el-col>
             <el-col :span="24">
               <el-form-item>
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
-                <el-button type="primary" @click="submitForm('ruleForm')"
+                <el-button @click="resetForm('accessWhitelisting')"
+                  >重置</el-button
+                >
+                <el-button
+                  size="big"
+                  type="primary"
+                  @click="submitForm('accessWhitelisting')"
                   >新增</el-button
                 >
               </el-form-item>
@@ -247,7 +257,7 @@
 export default {
   data () {
     return {
-      ruleForm: {
+      accessWhitelisting: {
         name: '',
         company: '',
         department: '',
@@ -260,7 +270,8 @@ export default {
         toDate: '',
         toTime: '',
         auth: '',
-        selectedRegion: []
+        selectedRegion: [],
+        memo: ''
       },
       check: false,
       regionList: [
@@ -291,6 +302,7 @@ export default {
           label: '自訂'
         }
       ],
+
       rules: {
         name: [
           { required: true, message: '請輸入姓名', trigger: 'blur' },
@@ -305,7 +317,7 @@ export default {
         apply: [{ required: true, message: '請輸入申請事由', trigger: 'blur' }],
         fromDate: [
           {
-            type: 'date',
+            type: 'string',
             required: true,
             message: '請選擇生效日期',
             trigger: 'change'
@@ -313,7 +325,7 @@ export default {
         ],
         fromTime: [
           {
-            type: 'date',
+            type: 'string',
             required: true,
             message: '請選擇生效時間',
             trigger: 'change'
@@ -321,7 +333,7 @@ export default {
         ],
         toDate: [
           {
-            type: 'date',
+            type: 'string',
             required: true,
             message: '請選擇終止日期',
             trigger: 'change'
@@ -329,7 +341,7 @@ export default {
         ],
         toTime: [
           {
-            type: 'date',
+            type: 'string',
             required: true,
             message: '請選擇終止時間',
             trigger: 'change'
@@ -353,20 +365,45 @@ export default {
     }
   },
   methods: {
-    submitForm (ruleForm) {
-    //   this.$refs[ruleForm].validate((valid) => {
-    //     if (valid) {
-    //       alert('submit!')
-    //     } else {
-    //       console.log('error submit!!')
-    //       return false
-    //     }
-    //   })
-      console.log(this.ruleForm)
+    submitForm (accessWhitelisting) {
+      this.$refs[accessWhitelisting].validate((valid) => {
+        if (!valid) {
+          return false
+        }
+      })
+      this.axios
+        .post(
+          `${process.env.VUE_APP_API_ENDPOINT}/Create/`,
+          this.accessWhitelisting
+        )
+        .then((res) => {
+          if (res.data.status) {
+            this.$swal.fire({
+              icon: 'success',
+              title: '新增成功',
+              text: '成功送出資料'
+            })
+          } else {
+            this.$swal.fire({
+              icon: 'error',
+              title: '新增失敗',
+              text: res.data.error_msg
+            })
+          }
+        })
+        .catch((err) => {
+          this.$swal({
+            icon: 'error',
+            title: '新增失敗',
+            text: err.response.data.message
+          })
+        })
     },
-    resetForm (ruleForm) {
-      this.$refs[ruleForm].resetFields()
+
+    resetForm (accessWhitelisting) {
+      this.$refs[accessWhitelisting].resetFields()
     }
+
   }
 }
 </script>

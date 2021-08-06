@@ -124,7 +124,7 @@ h1 {
   height: 20px;
   border-radius: 50%;
   border: 1px solid $color_grey;
-  // display: none;
+  display: none;
   &::after {
     box-sizing: content-box;
     content: "";
@@ -147,7 +147,7 @@ h1 {
 .el-checkbox__input.is-indeterminate .el-checkbox__inner {
   background-color: $color_blue;
   border-color: $color_light_blue;
-  // display: block;
+  display: block;
 }
 .el-checkbox__input.is-checked + .el-checkbox__label {
   color: $color_blue;
