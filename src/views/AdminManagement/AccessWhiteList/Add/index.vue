@@ -29,6 +29,7 @@
             <el-col :span="12">
               <el-form-item class="form-item" required prop="name">
                 <el-input
+                  v-focus
                   v-model="accessWhitelisting.name"
                   autocomplete="off"
                   placeholder="請輸入姓名"
@@ -130,9 +131,9 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" prop="fromDate">
+              <el-form-item class="form-item" prop="RegisteredDate">
                 <el-date-picker
-                  v-model="accessWhitelisting.fromDate"
+                  v-model="accessWhitelisting.RegisteredDate"
                   type="date"
                   format="yyyy 年 MM 月 dd 日"
                   value-format="yyyy-MM-dd"
@@ -143,22 +144,23 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" prop="toDate">
+              <el-form-item class="form-item"  prop="EndDate">
                 <el-date-picker
                   :disabled="check ? true : false"
-                  v-model="accessWhitelisting.toDate"
+                  v-model="accessWhitelisting.EndDate"
                   type="date"
                   format="yyyy 年 MM 月 dd 日"
                   value-format="yyyy-MM-dd"
-                  placeholder="終止日期＊｜"
+                  placeholder="終止日期 ｜"
+
                 >
                 </el-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" prop="fromTime">
+              <el-form-item class="form-item" prop="RegisteredTime">
                 <el-time-select
-                  v-model="accessWhitelisting.fromTime"
+                  v-model="accessWhitelisting.RegisteredTime"
                   :picker-options="{
                     start: '08:30',
                     step: '00:15',
@@ -170,22 +172,25 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" prop="toTime">
+              <el-form-item class="form-item"  prop="EndTime">
                 <el-time-select
                   :disabled="check ? true : false"
-                  v-model="accessWhitelisting.toTime"
+                  v-model="accessWhitelisting.EndTime"
+
                   :picker-options="{
                     start: '08:30',
                     step: '00:15',
                     end: '23:30',
                   }"
-                  placeholder="終止時間＊｜"
+                  placeholder="終止時間 ｜"
                 >
                 </el-time-select>
               </el-form-item>
             </el-col>
             <el-col :span="24" style="margin-bottom:10px">
-              <el-checkbox v-model="check">無限制終止日期</el-checkbox>
+              <el-checkbox @change="deleteEndDate()" v-model="check"
+                >無限制終止日期</el-checkbox
+              >
             </el-col>
             <el-col :span="24">
               <el-form-item class="form-item" required prop="auth">
@@ -208,8 +213,8 @@
               </el-form-item>
             </el-col>
 
-            <el-col style="margin-bottom:15px">
-              <el-form-item class="form-item" prop="region">
+            <el-col>
+              <el-form-item class="form-item" prop="selectedRegion">
                 <el-checkbox-group v-model="accessWhitelisting.selectedRegion">
                   <el-checkbox
                     style="margin-bottom:20px"
@@ -224,7 +229,7 @@
             </el-col>
 
             <el-col :span="24">
-              <el-form-item class="form-item">
+              <el-form-item class="form-item" prop="memo">
                 <el-input
                   v-model="accessWhitelisting.memo"
                   autocomplete="off"
@@ -234,13 +239,13 @@
                 >
               </el-form-item>
             </el-col>
+
             <el-col :span="24">
               <el-form-item>
                 <el-button @click="resetForm('accessWhitelisting')"
                   >重置</el-button
                 >
                 <el-button
-                  size="big"
                   type="primary"
                   @click="submitForm('accessWhitelisting')"
                   >新增</el-button
@@ -265,10 +270,10 @@ export default {
         category: '',
         cardId: '',
         apply: '',
-        fromDate: '',
-        fromTime: '',
-        toDate: '',
-        toTime: '',
+        RegisteredDate: '',
+        RegisteredTime: '',
+        EndDate: '',
+        EndTime: '',
         auth: '',
         selectedRegion: [],
         memo: ''
@@ -314,7 +319,7 @@ export default {
         ],
         cardId: [{ required: true, message: '請輸入卡號', trigger: 'blur' }],
         apply: [{ required: true, message: '請輸入申請事由', trigger: 'blur' }],
-        fromDate: [
+        RegisteredDate: [
           {
             type: 'string',
             required: true,
@@ -322,27 +327,11 @@ export default {
             trigger: 'change'
           }
         ],
-        fromTime: [
+        RegisteredTime: [
           {
             type: 'string',
             required: true,
             message: '請選擇生效時間',
-            trigger: 'change'
-          }
-        ],
-        toDate: [
-          {
-            type: 'string',
-            required: true,
-            message: '請選擇終止日期',
-            trigger: 'change'
-          }
-        ],
-        toTime: [
-          {
-            type: 'string',
-            required: true,
-            message: '請選擇終止時間',
             trigger: 'change'
           }
         ],
@@ -360,6 +349,12 @@ export default {
         auth: [
           { required: true, message: '請選擇權限區域', trigger: 'change' }
         ]
+      },
+      deleteEndDate () {
+        if (this.check) {
+          this.accessWhitelisting.EndDate = null
+          this.accessWhitelisting.EndTime = null
+        }
       }
     }
   },
@@ -372,9 +367,8 @@ export default {
       })
       this.axios
         .post(
-        `${process.env.VUE_APP_API_ENDPOINT}/api/form/`,
-        //   `${process.env.VUE_APP_API_ENDPOINT}/Create/`,
-        this.accessWhitelisting
+          `${process.env.VUE_APP_API_ENDPOINT}/api/form/`,
+          this.accessWhitelisting
         )
         .then((res) => {
           if (res.data.success) {
@@ -405,7 +399,19 @@ export default {
         })
     },
     resetForm (accessWhitelisting) {
-      this.$refs[accessWhitelisting].resetFields()
+      this.$swal({
+        title: '確定要重置表單嗎？',
+        text: '注意，此動作不可復原',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#ED6262',
+        confirmButtonText: '確定'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$refs[accessWhitelisting].resetFields()
+        }
+      })
     }
   }
 }

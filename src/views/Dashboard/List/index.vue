@@ -43,8 +43,13 @@ export default {
 <style lang="scss" scoped>
 @import "@/style/main.scss";
 #dashboard-wrap {
+ box-sizing: border-box;
   margin: 5px 20px;
   border-radius: 15px;
+  padding: 15px;
+  font-family: Noto Sans TC;
+  height: 99%;
+  overflow: auto;
   .bulletin-board {
     @include flex(row, space-around, flex-start);
     margin-top: 20px;
