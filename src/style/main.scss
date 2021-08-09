@@ -230,5 +230,8 @@ h1 {
 .el-checkbox.is-bordered+.el-checkbox.is-bordered {
   margin-left: -1px;
 }
-
+.el-switch__label.is-active {
+  color: $color_grey;
+  font-weight: normal;
+}
 

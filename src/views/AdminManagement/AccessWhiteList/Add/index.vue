@@ -13,8 +13,8 @@
       <div class="form-title-container">
         <div class="form-title"><span>人員資料</span></div>
         <div class="form-title"><span>門禁設定</span></div>
-        <div class="form-title mt-35"><span>權限內容</span></div>
-        <div class="form-title mt-15"><span>備註資料</span></div>
+        <div class="form-title"><span>權限內容</span></div>
+        <div class="form-title"><span>備註資料</span></div>
       </div>
 
       <div class="form-panel">
@@ -130,35 +130,43 @@
                 >
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item class="form-item" prop="start_date">
-                <el-date-picker
-                  v-model="accessWhitelisting.start_date"
-                  type="datetime"
-                  placeholder="選擇生效日期時間"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                >
-                </el-date-picker>
-              </el-form-item>
-            </el-col>
+            <el-col :span="24">
+              <el-col :span="12">
+                <el-form-item class="form-item" prop="start_date">
+                  <el-date-picker
+                    style="width: 100%"
+                    v-model="accessWhitelisting.start_date"
+                    type="datetime"
+                    placeholder="選擇生效日期時間"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
 
-            <el-col :span="12">
-              <el-form-item class="form-item" prop="end_date">
-                <el-date-picker
-                  :disabled="check ? true : false"
-                  v-model="accessWhitelisting.end_date"
-                  type="datetime"
-                  value-format="yyyy-MM-dd HH:mm:ss"
-                  placeholder="選擇結束日期時間"
-                >
-                </el-date-picker>
-              </el-form-item>
-            </el-col>
+              <el-col :span="12">
+                <el-form-item class="form-item" prop="end_date">
+                  <el-date-picker
+                    style="width: 100%"
+                    :disabled="check ? true : false"
+                    v-model="accessWhitelisting.end_date"
+                    type="datetime"
+                    value-format="yyyy-MM-dd HH:mm:ss"
+                    placeholder="選擇結束日期時間"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
 
-            <el-col class="endDateCheck" :span="24" style="margin-bottom:10px">
-              <el-checkbox @change="deleteEndDate()" v-model="check"
-                >無限制終止日期</el-checkbox
+              <el-col
+                class="endDateCheck"
+                :span="24"
+                style="margin-bottom:10px"
               >
+                <el-checkbox @change="deleteEndDate()" v-model="check"
+                  >無限制終止日期</el-checkbox
+                >
+              </el-col>
             </el-col>
             <el-col :span="24">
               <el-form-item class="form-item" required prop="content">
@@ -191,7 +199,8 @@
                     :label="item.value"
                     :value="item.value"
                     border
-                  >{{item.region}}</el-checkbox>
+                    >{{ item.region }}</el-checkbox
+                  >
                 </el-checkbox-group>
               </el-form-item>
             </el-col>
@@ -311,9 +320,7 @@ export default {
             trigger: 'change'
           }
         ],
-        type: [
-          { required: true, message: '請選擇類別', trigger: 'change' }
-        ],
+        type: [{ required: true, message: '請選擇類別', trigger: 'change' }],
         content: [
           { required: true, message: '請選擇權限區域', trigger: 'change' }
         ]
@@ -333,10 +340,7 @@ export default {
         }
       })
       this.axios
-        .post(
-          '/api',
-          this.accessWhitelisting
-        )
+        .post('/api', this.accessWhitelisting)
         .then((res) => {
           if (res.data.Status === 0) {
             this.$swal.fire({
