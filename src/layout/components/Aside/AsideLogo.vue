@@ -24,7 +24,6 @@ export default {
     width: 220px;
     object-fit: cover;
     cursor: pointer;
-    margin-bottom: 10px;
   }
 }
 </style>

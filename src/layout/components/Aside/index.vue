@@ -24,12 +24,11 @@ export default {
 </script>
 <style lang="scss">
 .layout-aside {
-  margin-right: 50px;
-  height: inherit;
-  width: 280px !important;
-  &-wrap{
+  height: 100%;
+  width: 317px !important;
+  &-wrap {
     background: url(~@/assets/aside-menu.png) no-repeat center/100% 100%;
-    height: 520px;
+      height: 589px;
   }
 }
 </style>

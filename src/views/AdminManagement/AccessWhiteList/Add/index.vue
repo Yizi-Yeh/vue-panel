@@ -13,8 +13,8 @@
       <div class="form-title-container">
         <div class="form-title"><span>人員資料</span></div>
         <div class="form-title"><span>門禁設定</span></div>
-        <div class="form-title"><span>權限內容</span></div>
-        <div class="form-title"><span>備註資料</span></div>
+        <div class="form-title mt-35"><span>權限內容</span></div>
+        <div class="form-title mt-15"><span>備註資料</span></div>
       </div>
 
       <div class="form-panel">
@@ -70,9 +70,9 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="employeeId">
+              <el-form-item class="form-item" required prop="worker_id">
                 <el-input
-                  v-model="accessWhitelisting.employeeId"
+                  v-model="accessWhitelisting.worker_id"
                   autocomplete="off"
                   placeholder="請輸入工號"
                 >
@@ -84,10 +84,10 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="category">
+              <el-form-item class="form-item" required prop="type">
                 <el-select
                   placeholder="請選擇類別＊｜"
-                  v-model="accessWhitelisting.category"
+                  v-model="accessWhitelisting.type"
                 >
                   <!-- <template slot="prefix" class="prefix-left">
                     類別 <span style="color: #ED6363">＊ </span
@@ -105,9 +105,9 @@
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item" required prop="cardId">
+              <el-form-item class="form-item" required prop="card_id">
                 <el-input
-                  v-model="accessWhitelisting.cardId"
+                  v-model="accessWhitelisting.card_id"
                   autocomplete="off"
                   placeholder="請輸入卡號"
                 >
@@ -118,9 +118,9 @@
               </el-form-item>
             </el-col>
             <el-col :span="24">
-              <el-form-item class="form-item" required prop="apply">
+              <el-form-item class="form-item" required prop="reason">
                 <el-input
-                  v-model="accessWhitelisting.apply"
+                  v-model="accessWhitelisting.reason"
                   autocomplete="off"
                   placeholder="請輸入申請事由"
                 >
@@ -131,72 +131,40 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item class="form-item" prop="RegisteredDate">
+              <el-form-item class="form-item" prop="start_date">
                 <el-date-picker
-                  v-model="accessWhitelisting.RegisteredDate"
-                  type="date"
-                  format="yyyy 年 MM 月 dd 日"
-                  value-format="yyyy-MM-dd"
-                  placeholder="生效日期＊｜"
+                  v-model="accessWhitelisting.start_date"
+                  type="datetime"
+                  placeholder="選擇生效日期時間"
+                  value-format="yyyy-MM-dd HH:mm:ss"
                 >
                 </el-date-picker>
               </el-form-item>
             </el-col>
 
             <el-col :span="12">
-              <el-form-item class="form-item"  prop="EndDate">
+              <el-form-item class="form-item" prop="end_date">
                 <el-date-picker
                   :disabled="check ? true : false"
-                  v-model="accessWhitelisting.EndDate"
-                  type="date"
-                  format="yyyy 年 MM 月 dd 日"
-                  value-format="yyyy-MM-dd"
-                  placeholder="終止日期 ｜"
-
+                  v-model="accessWhitelisting.end_date"
+                  type="datetime"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  placeholder="選擇結束日期時間"
                 >
                 </el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item class="form-item" prop="RegisteredTime">
-                <el-time-select
-                  v-model="accessWhitelisting.RegisteredTime"
-                  :picker-options="{
-                    start: '08:30',
-                    step: '00:15',
-                    end: '23:30',
-                  }"
-                  placeholder="生效時間＊｜"
-                >
-                </el-time-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item class="form-item"  prop="EndTime">
-                <el-time-select
-                  :disabled="check ? true : false"
-                  v-model="accessWhitelisting.EndTime"
 
-                  :picker-options="{
-                    start: '08:30',
-                    step: '00:15',
-                    end: '23:30',
-                  }"
-                  placeholder="終止時間 ｜"
-                >
-                </el-time-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="24" style="margin-bottom:10px">
+            <el-col class="endDateCheck" :span="24" style="margin-bottom:10px">
               <el-checkbox @change="deleteEndDate()" v-model="check"
                 >無限制終止日期</el-checkbox
               >
             </el-col>
             <el-col :span="24">
-              <el-form-item class="form-item" required prop="auth">
+              <el-form-item class="form-item" required prop="content">
                 <el-select
                   placeholder="請選擇權限區域＊｜"
-                  v-model="accessWhitelisting.auth"
+                  v-model="accessWhitelisting.content"
                 >
                   <!-- <template slot="prefix"
                     >權限 <span style="color: #ED6363">＊ </span
@@ -214,16 +182,16 @@
             </el-col>
 
             <el-col>
-              <el-form-item class="form-item" prop="selectedRegion">
-                <el-checkbox-group v-model="accessWhitelisting.selectedRegion">
+              <el-form-item prop="machine">
+                <el-checkbox-group v-model="accessWhitelisting.machine">
                   <el-checkbox
                     style="margin-bottom:20px"
                     v-for="item in regionList"
-                    :key="item.region"
-                    :label="item.region"
-                    :value="item.region"
+                    :key="item.value"
+                    :label="item.value"
+                    :value="item.value"
                     border
-                  ></el-checkbox>
+                  >{{item.region}}</el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
             </el-col>
@@ -263,47 +231,45 @@ export default {
   data () {
     return {
       accessWhitelisting: {
-        name: '',
-        company: '',
-        department: '',
-        employeeId: '',
-        category: '',
-        cardId: '',
-        apply: '',
-        RegisteredDate: '',
-        RegisteredTime: '',
-        EndDate: '',
-        EndTime: '',
-        auth: '',
-        selectedRegion: [],
-        memo: ''
+        name: 'Yizi',
+        company: 'Juststar',
+        department: 'tech',
+        card_id: '312321312313',
+        type: '',
+        worker_id: '32132131231',
+        reason: 'song',
+        start_date: '',
+        end_date: '',
+        content: 'test',
+        machine: []
+        // memo: ''
       },
       check: false,
       regionList: [
-        { region: 'E1-1' },
-        { region: 'E1-2' },
-        { region: 'E1-3' },
-        { region: 'E1-4' },
-        { region: 'E1-5' },
-        { region: 'E1-6' },
-        { region: 'E1-7' },
-        { region: 'E1-8' },
-        { region: 'E1-9' },
-        { region: 'E1-10' }
+        { region: 'E1-1', value: 1 },
+        { region: 'E1-2', value: 2 },
+        { region: 'E1-3', value: 3 },
+        { region: 'E1-4', value: 4 },
+        { region: 'E1-5', value: 5 },
+        { region: 'E1-6', value: 6 },
+        { region: 'E1-7', value: 7 },
+        { region: 'E1-8', value: 8 },
+        { region: 'E1-9', value: 9 },
+        { region: 'E1-10', value: 10 }
       ],
       categoryOptions: [
         {
-          value: 'employee',
+          value: '1',
           label: '員工'
         },
         {
-          value: 'vendor',
+          value: '2',
           label: '廠商'
         }
       ],
       authOptions: [
         {
-          value: 'random',
+          value: 'test',
           label: '自訂'
         }
       ],
@@ -314,20 +280,14 @@ export default {
         ],
         company: [{ required: true, message: '請輸入單位', trigger: 'blur' }],
         department: [{ required: true, message: '請輸入部門', blur: 'blur' }],
-        employeeId: [
+        worker_id: [
           { required: true, message: '請輸入工號', trigger: 'change' }
         ],
-        cardId: [{ required: true, message: '請輸入卡號', trigger: 'blur' }],
-        apply: [{ required: true, message: '請輸入申請事由', trigger: 'blur' }],
-        RegisteredDate: [
-          {
-            type: 'string',
-            required: true,
-            message: '請選擇生效日期',
-            trigger: 'change'
-          }
+        card_id: [{ required: true, message: '請輸入卡號', trigger: 'blur' }],
+        reason: [
+          { required: true, message: '請輸入申請事由', trigger: 'blur' }
         ],
-        RegisteredTime: [
+        start_date: [
           {
             type: 'string',
             required: true,
@@ -335,7 +295,15 @@ export default {
             trigger: 'change'
           }
         ],
-        region: [
+        // end_date: [
+        //   {
+        //     type: 'string',
+        //     required: true,
+        //     message: '請選擇有效時間',
+        //     trigger: 'change'
+        //   }
+        // ],
+        machine: [
           {
             type: 'array',
             required: true,
@@ -343,17 +311,16 @@ export default {
             trigger: 'change'
           }
         ],
-        category: [
+        type: [
           { required: true, message: '請選擇類別', trigger: 'change' }
         ],
-        auth: [
+        content: [
           { required: true, message: '請選擇權限區域', trigger: 'change' }
         ]
       },
       deleteEndDate () {
         if (this.check) {
-          this.accessWhitelisting.EndDate = null
-          this.accessWhitelisting.EndTime = null
+          this.accessWhitelisting.end_date = null
         }
       }
     }
@@ -367,11 +334,11 @@ export default {
       })
       this.axios
         .post(
-          `${process.env.VUE_APP_API_ENDPOINT}/api/form/`,
+          '/api',
           this.accessWhitelisting
         )
         .then((res) => {
-          if (res.data.success) {
+          if (res.data.Status === 0) {
             this.$swal.fire({
               icon: 'success',
               title: '門禁白名單新增成功',
@@ -392,7 +359,7 @@ export default {
           this.$swal({
             icon: 'error',
             title: '門禁白名單新增失敗',
-            text: err.response.data.message,
+            text: err.response.message,
             confirmButtonColor: '#1DB0DD',
             confirmButtonText: 'OK'
           })
@@ -448,7 +415,9 @@ export default {
     .form-title-container {
       @include flex(column, center, center);
       width: 17%;
+      //   border: 1px solid rgb(75, 178, 34);
       .form-title {
+        // border: 1px solid rgb(34, 48, 178);
         text-align: left;
         width: 100%;
         height: 190px;

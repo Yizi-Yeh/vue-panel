@@ -34,19 +34,21 @@ export default {
 @import "@/style/main.scss";
 #layout {
   width: 100%;
-  padding-top: 50px;
-  padding-left: 120px;
-  padding-right: 120px;
+  padding-top: 30px;
+  padding-left: 45px;
+  padding-right: 46px;
   min-height: 100%;
   background: url(~@/assets/layout-background.png) no-repeat center/100% 100%;
   .layout-wrapper {
-    height: 630px;
+    height: 100%;
     .layout-main {
+      height: inherit;
+      padding-left: 25px;
       @include flex(column, center, center);
     }
     .layout-main-top {
-      height: 110px !important;
       width: 100%;
+      height: 98px;
       @include flex(column, center, center);
     }
   }

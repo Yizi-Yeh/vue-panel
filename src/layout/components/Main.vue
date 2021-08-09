@@ -1,5 +1,5 @@
 <template>
-  <el-main>
+  <el-main id="main-content">
     <!-- <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
@@ -15,10 +15,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-main {
-  min-width: 870px;
-  max-width: 870px;
-  height: 520px !important;
+#main-content {
+  min-width: 1003px;
+  max-width: 1003px;
+  height: 589px;
   background: url(http://www.ildcity.com/client/tsip/images/dashboard/u117.png)
     no-repeat center/100% 100%;
 }
