@@ -1,9 +1,20 @@
 <template>
   <nav>
     <el-menu class="layout-aside-menu">
-      <el-menu-item class="layout-aside-items" index="1">
+      <!-- <el-menu-item class="layout-aside-items" index="1">
         <span slot="title"> <router-link to="/">首頁</router-link></span>
-      </el-menu-item>
+      </el-menu-item> -->
+      <el-row class="tac">
+        <el-col :span="24">
+          <el-menu class="layout-aside-items">
+            <el-submenu index="1">
+              <template slot="title">
+                <span>首頁</span>
+              </template>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </el-row>
       <hr />
       <!-- <el-submenu index="1">
         <template slot="title">
@@ -79,13 +90,35 @@
         </el-col>
       </el-row>
       <hr />
-      <el-menu-item class="layout-aside-items" index="3">
+      <el-row class="tac">
+        <el-col :span="24">
+          <el-menu class="layout-aside-items">
+            <el-submenu index="1">
+              <template slot="title">
+                <span>權限管理</span>
+              </template>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </el-row>
+      <!-- <el-menu-item class="layout-aside-items" index="3">
         <router-link to="/permission">權限管理</router-link>
-      </el-menu-item>
+      </el-menu-item> -->
       <hr />
-      <el-menu-item class="layout-aside-items" index="4">
+      <el-row class="tac">
+        <el-col :span="24">
+          <el-menu class="layout-aside-items">
+            <el-submenu index="1">
+              <template slot="title">
+                <span>保養維護</span>
+              </template>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </el-row>
+      <!-- <el-menu-item class="layout-aside-items" index="4">
         <router-link to="/maintain">保養維護</router-link>
-      </el-menu-item>
+      </el-menu-item> -->
       <hr />
     </el-menu>
   </nav>

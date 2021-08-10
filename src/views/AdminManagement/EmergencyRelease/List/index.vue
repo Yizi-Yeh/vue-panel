@@ -160,7 +160,7 @@ export default {
   data () {
     return {
       door: {
-        ViewId: 'D3',
+        ViewId: 'D3e',
         UID: '1001',
         UKey: '3F698DAC58',
         SN: '1701000110',
@@ -246,7 +246,15 @@ export default {
             text: res.message
           })
         })
+    },
+    init () {
+      this.axios.get('/api/QueryCmd').then(res => {
+        console.log(res)
+      })
     }
+  },
+  mounted () {
+    this.init()
   }
 }
 </script>

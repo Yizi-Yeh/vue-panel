@@ -241,3 +241,35 @@ h1 {
   width: 100%;
   margin: 12px 0;
 }
+.el-menu-item{
+  font-size: 18px;
+    color: #1DB0DC;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+.el-submenu .el-menu-item {
+  height: 50px;
+  line-height: 50px;
+  padding: 0px310px;
+  min-width: 200px;
+}
+.el-submenu__title {
+    font-size: 20px;
+    text-align: left;
+    color: #1DB0DC;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+.el-menu-item:focus, .el-menu-item:hover {
+  outline: 0;
+  background-color: #1DB0DC;
+  color: #fff;
+}
+
+.el-submenu__title:focus, .el-submenu__title:hover {
+  outline: 0;
+  background-color: #1DB0DC;
+  color: #fff;
+}

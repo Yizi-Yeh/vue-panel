@@ -244,7 +244,7 @@ export default {
         company: 'Juststar',
         department: '研發部',
         card_id: 'ACC332313',
-        type: '1',
+        type: '',
         worker_id: 'CDD3231',
         reason: '會議',
         start_date: '',
