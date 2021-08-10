@@ -10,12 +10,15 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import qs from 'qs'
+
 import { focus } from '@/directive/focus'
 
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)
 Vue.component('ImgInputer', ImgInputer)
+Vue.prototype.qs = qs
 focus(Vue)
 
 Vue.config.productionTip = false

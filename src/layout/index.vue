@@ -36,7 +36,7 @@ export default {
   width: 100%;
   padding-top: 30px;
   padding-left: 45px;
-  padding-right: 46px;
+  padding-right: 45px;
   min-height: 100%;
   background: url(~@/assets/layout-background.png) no-repeat center/100% 100%;
   .layout-wrapper {
@@ -48,8 +48,8 @@ export default {
     }
     .layout-main-top {
       width: 100%;
-      height: 98px;
-      @include flex(column, center, center);
+      height: 100px;
+      @include flex(column,center, flex-end);
     }
   }
 }

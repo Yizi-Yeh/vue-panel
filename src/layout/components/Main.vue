@@ -1,10 +1,10 @@
 <template>
   <el-main id="main-content">
-    <!-- <keep-alive>
+    <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" /> -->
-    <router-view></router-view>
+    <router-view v-if="!$route.meta.keepAlive" />
+    <!-- <router-view></router-view> -->
   </el-main>
 </template>
 

@@ -340,8 +340,9 @@ export default {
         }
       })
       this.axios
-        .post('/api', this.accessWhitelisting)
+        .post('/api/personwhitelist', this.accessWhitelisting)
         .then((res) => {
+          console.log(this.accessWhitelisting)
           if (res.data.Status === 0) {
             this.$swal.fire({
               icon: 'success',

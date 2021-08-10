@@ -34,7 +34,7 @@
 
     <div class="item-control-container">
       <el-row class="item-control-row">
-        <el-col :span="12" class="item-control-col-left">
+        <!-- <el-col :span="12" class="item-control-col-left">
           <el-col :span="12">
             <el-select v-model="value" placeholder="請選擇樓層">
               <el-option
@@ -56,19 +56,19 @@
               >
               </el-option> </el-select
           ></el-col>
-        </el-col>
+        </el-col> -->
         <el-col :span="12" class="item-control-col-right">
           <el-col :span="9">
             <ul class="item-status-ul">
               <el-col class="item-status-col" :span="4">
-                <li class="item-status-li">正常管制 103 個</li>
+                <li class="item-status-li-normal">正常管制 103 個</li>
               </el-col>
             </ul>
           </el-col>
           <el-col :span="9">
             <ul class="item-status-ul">
               <el-col class="item-status-col" :span="4">
-                <li class="item-status-li">未關閉 21 個</li>
+                <li class="item-status-li-unusual">未關閉 21 個</li>
               </el-col>
             </ul>
           </el-col>
@@ -85,15 +85,14 @@
             </el-row>
             <el-divider></el-divider>
             <el-row class="door-panel-control-row" style="margin-bottom: 0px">
-              <el-col :span="8" v-for="(item, idx) in 9" :key="item">
+              <el-col :span="8" v-for="(item) in 1" :key="item">
                 <el-switch
-                  width="32"
-                  v-model="floor.isOpen"
+                  v-model="isOpen"
                   active-color="#1DB0DC"
                   inactive-color="#ED6363"
                   active-text="B1-1大門"
                   style="margin-bottom: 16px"
-                  @change="handelUpdate(idx, floor)"
+                  @change="handelUpdate()"
                   :active-value="true"
                   :inactive-value="false"
                 >
@@ -156,18 +155,23 @@
   </el-card>
 </template>
 <script>
+import qs from 'qs'
 export default {
   data () {
     return {
-      floor: {
-        isOpen: false
-      }
+      door: {
+        ViewId: 'V78910',
+        UID: '456',
+        UKey: 'ABCD12345678',
+        SN: '170000001'
+      },
+      isOpen: false
     }
   },
   methods: {
-    handelUpdate (idx, floor) {
-      const flag = floor.isOpen
-      floor.isOpen = !floor.isOpen
+    handelUpdate () {
+      const flag = this.isOpen
+      this.isOpen = !this.isOpen
       this.$swal({
         title: '確定要執行此操作嗎？',
         icon: 'warning',
@@ -178,33 +182,46 @@ export default {
         cancelButtonText: '取消'
       })
         .then(() => {
-          if (flag) {
-            floor.isOpen = true
+          const data = qs.stringify(this.door)
+          this.axios.post('/api/QueryCmd', data,
+            {
+              headers: { 'content-type': 'application/x-www-form-urlencoded' }
+            }).then((res) => {
+            if (res.data.Status === 0) {
+              if (flag) {
+                this.isOpen = true
+                this.$swal.fire({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 1000,
+                  icon: 'success',
+                  title: '開啟成功'
+                })
+              } else {
+                this.isOpen = false
+                this.$swal.fire({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 1000,
+                  icon: 'success',
+                  title: '關閉成功'
+                })
+              }
+            }
+          }).catch((res) => {
             this.$swal.fire({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1000,
-              icon: 'success',
-              title: '開啟成功'
+              icon: 'error',
+              title: '操作失敗',
+              text: res.message
             })
-          } else {
-            floor.isOpen = false
-            this.$swal.fire({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1000,
-              icon: 'success',
-              title: '關閉成功'
-            })
-          }
-        })
-        .catch(() => {
+          })
+        }).catch((res) => {
           this.$swal.fire({
             icon: 'error',
-            title: '取消操作'
-            // text: err.response.data.message
+            title: '操作失敗',
+            text: res.message
           })
         })
     }
@@ -292,7 +309,21 @@ export default {
         .item-status-col {
           @include flex(row, space-between, center);
           width: 100%;
-          .item-status-li {
+          .item-status-li-normal {
+            @include flex(row, flex-end, center);
+            width: 100%;
+            &::before {
+              content: "";
+              display: inline-block;
+              margin-right: 10px;
+              height: 16px;
+              width: 16px;
+              background-color: $color_blue;
+              border-radius: 50%;
+              border: 1px solid transparent;
+            }
+          }
+          .item-status-li-unusual {
             @include flex(row, flex-end, center);
             width: 100%;
             &::before {
@@ -326,12 +357,17 @@ export default {
             .el-col {
               @include flex(row, center, center);
               display: inline-block;
+              text-align: center;
+              .el-switch {
+                width: 125px;
+                @include flex(row, center, center);
+              }
             }
           }
         }
       }
       .item-panel-col-right {
-         float: right;
+        float: right;
         width: 408px;
         .box-card {
           border: 1.5px solid $color_column_border;
