@@ -132,7 +132,7 @@
             </el-col>
             <el-col :span="24">
               <el-col :span="12">
-                <el-form-item class="form-item" prop="start_date">
+                <el-form-item class="form-item" required prop="start_date">
                   <el-date-picker
                     style="width: 100%"
                     v-model="accessWhitelisting.start_date"
@@ -244,7 +244,7 @@ export default {
         company: 'Juststar',
         department: 'tech',
         card_id: '312321312313',
-        type: '',
+        type: '1',
         worker_id: '32132131231',
         reason: 'song',
         start_date: '',
@@ -336,39 +336,48 @@ export default {
     submitForm (accessWhitelisting) {
       this.$refs[accessWhitelisting].validate((valid) => {
         if (!valid) {
-          return false
-        }
-      })
-      this.axios
-        .post('/api/personwhitelist', this.accessWhitelisting)
-        .then((res) => {
-          console.log(this.accessWhitelisting)
-          if (res.data.Status === 0) {
-            this.$swal.fire({
-              icon: 'success',
-              title: '門禁白名單新增完成',
-              text: '資料新增完成！可至車牌白名單查看。',
-              confirmButtonColor: '#1DB0DD',
-              confirmButtonText: '我知道了'
-            })
-          } else {
-            this.$swal.fire({
-              icon: 'error',
-              title: '門禁白名單新增失敗',
-              confirmButtonColor: '#1DB0DD',
-              confirmButtonText: 'OK'
-            })
-          }
-        })
-        .catch((err) => {
           this.$swal({
             icon: 'error',
             title: '門禁白名單新增失敗',
-            text: err.response.message,
+            text: '請確認資料是否填寫完整',
             confirmButtonColor: '#1DB0DD',
-            confirmButtonText: 'OK'
+            confirmButtonText: '我知道了'
           })
-        })
+          return false
+        } else {
+          this.axios
+            .post('/api/personwhitelist', this.accessWhitelisting)
+            .then((res) => {
+              console.log(this.accessWhitelisting)
+              if (res.data.Status === 0) {
+                this.$swal.fire({
+                  icon: 'success',
+                  title: '門禁白名單新增完成',
+                  text: '資料新增完成！可至車牌白名單查看。',
+                  confirmButtonColor: '#1DB0DD',
+                  confirmButtonText: '我知道了'
+                })
+              } else {
+                this.$swal.fire({
+                  icon: 'error',
+                  title: '門禁白名單新增失敗',
+                  text: res.message,
+                  confirmButtonColor: '#1DB0DD',
+                  confirmButtonText: 'OK'
+                })
+              }
+            })
+            .catch((res) => {
+              this.$swal({
+                icon: 'error',
+                title: '門禁白名單新增失敗',
+                text: res.message,
+                confirmButtonColor: '#1DB0DD',
+                confirmButtonText: 'OK'
+              })
+            })
+        }
+      })
     },
     resetForm (accessWhitelisting) {
       this.$swal({
@@ -376,7 +385,7 @@ export default {
         text: '注意，此動作不可復原',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#1DB0DD',
         cancelButtonColor: '#ED6262',
         confirmButtonText: '確定',
         cancelButtonText: '取消'

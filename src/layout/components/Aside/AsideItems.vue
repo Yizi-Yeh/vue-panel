@@ -126,4 +126,15 @@ export default {}
 .router-link-active {
   color: $color_white;
 }
+.layout-aside-menu .layout-aside-items {
+    margin-top: 5px;
+    text-align: center;
+    color: #1DB0DC;
+    font-size: 1.125rem;
+}
+.el-submenu__title i {
+    color: $color_blue;
+    font-weight: bold;
+    margin-right: 45px;
+}
 </style>
