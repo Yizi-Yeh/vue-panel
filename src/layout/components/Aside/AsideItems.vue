@@ -15,7 +15,7 @@
           </el-menu>
         </el-col>
       </el-row>
-      <hr />
+      <hr>
       <!-- <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -89,7 +89,7 @@
           </el-menu>
         </el-col>
       </el-row>
-      <hr />
+      <hr>
       <el-row class="tac">
         <el-col :span="24">
           <el-menu class="layout-aside-items">
@@ -104,7 +104,7 @@
       <!-- <el-menu-item class="layout-aside-items" index="3">
         <router-link to="/permission">權限管理</router-link>
       </el-menu-item> -->
-      <hr />
+      <hr>
       <el-row class="tac">
         <el-col :span="24">
           <el-menu class="layout-aside-items">
@@ -119,7 +119,7 @@
       <!-- <el-menu-item class="layout-aside-items" index="4">
         <router-link to="/maintain">保養維護</router-link>
       </el-menu-item> -->
-      <hr />
+      <hr>
     </el-menu>
   </nav>
 </template>
@@ -136,23 +136,13 @@ export default {}
   padding: 15px;
   @include flex(column, center, center);
   .layout-aside-items {
-    width: 230px;
-    margin-top: 5px;
-    margin-left: 17px;
+    width: 231px;
+    margin-left:10px ;
     color: $color_blue;
     font-size: $text-font-lg;
     &:hover {
       background-color: transparent;
     }
-  }
-  hr {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    border: none;
-    height: 1px;
-    color: $color_blue; /* old IE */
-    background-color: $color_blue; /* Modern Browsers */
   }
   a {
     color: $color_blue;
@@ -165,9 +155,13 @@ export default {}
   color: #1db0dc;
   font-size: 1.125rem;
 }
-.el-submenu__title i {
-  color: $color_blue;
-  font-weight: bold;
-  margin-right: 15px;
-}
+
+hr {
+  margin-left:10px;
+    width: 231px;
+    border: none;
+    height: 1px;
+    color: $color_blue; /* old IE */
+    background-color: $color_blue; /* Modern Browsers */
+  }
 </style>
