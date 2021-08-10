@@ -137,7 +137,7 @@
                     style="width: 100%"
                     v-model="accessWhitelisting.start_date"
                     type="datetime"
-                    placeholder="選擇生效日期時間"
+                    placeholder="選擇生效日期時間＊"
                     value-format="yyyy-MM-dd HH:mm:ss"
                   >
                   </el-date-picker>
@@ -242,11 +242,11 @@ export default {
       accessWhitelisting: {
         name: 'Yizi',
         company: 'Juststar',
-        department: 'tech',
-        card_id: '312321312313',
+        department: '研發部',
+        card_id: 'ACC332313',
         type: '1',
-        worker_id: '32132131231',
-        reason: 'song',
+        worker_id: 'CDD3231',
+        reason: '會議',
         start_date: '',
         end_date: '',
         content: 'test',

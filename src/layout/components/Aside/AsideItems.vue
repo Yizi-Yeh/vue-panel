@@ -32,7 +32,7 @@
 
       <el-row class="tac">
         <el-col :span="24">
-          <el-menu class="el-menu-vertical-demo">
+          <el-menu class="layout-aside-items">
             <el-submenu index="1">
               <template slot="title">
                 <span>行政管理系統</span>
@@ -44,12 +44,12 @@
               </el-submenu>
               <el-submenu index="1-2">
                 <template slot="title">門禁管理</template>
-                <el-menu-item index="1-1">管制狀態</el-menu-item>
-                <el-menu-item index="1-2">白名單</el-menu-item>
+                <!-- <el-menu-item index="1-1">管制狀態</el-menu-item>
+                <el-menu-item index="1-2">白名單總覽</el-menu-item> -->
                 <router-link
                   to="/adminmanagement/access-control/access-white-list/add"
                   ><el-menu-item index="1-3"
-                    >新增門禁白名單</el-menu-item
+                    >新增白名單</el-menu-item
                   ></router-link
                 >
                 <router-link
@@ -59,7 +59,7 @@
                     緊急控管</el-menu-item
                   ></router-link
                 >
-                <el-menu-item index="1-5">後台管理</el-menu-item>
+                <!-- <el-menu-item index="1-5">權限管理</el-menu-item> -->
               </el-submenu>
               <el-submenu index="1-3">
                 <template slot="title">訪客系統</template>
@@ -101,9 +101,11 @@ export default {}
   background-color: transparent !important;
   height: inherit;
   padding: 15px;
+  @include flex(column, center, center);
   .layout-aside-items {
+    width: 230px;
     margin-top: 5px;
-    text-align: center;
+    margin-left: 17px;
     color: $color_blue;
     font-size: $text-font-lg;
     &:hover {
@@ -123,18 +125,16 @@ export default {}
     color: $color_blue;
   }
 }
-.router-link-active {
-  color: $color_white;
-}
+
 .layout-aside-menu .layout-aside-items {
-    margin-top: 5px;
-    text-align: center;
-    color: #1DB0DC;
-    font-size: 1.125rem;
+  margin-top: 5px;
+  text-align: center;
+  color: #1db0dc;
+  font-size: 1.125rem;
 }
 .el-submenu__title i {
-    color: $color_blue;
-    font-weight: bold;
-    margin-right: 45px;
+  color: $color_blue;
+  font-weight: bold;
+  margin-right: 15px;
 }
 </style>
