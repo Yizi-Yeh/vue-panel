@@ -13,8 +13,8 @@
       <div class="form-title-container">
         <div class="form-title"><span>人員資料</span></div>
         <div class="form-title"><span>門禁設定</span></div>
-        <div class="form-title"><span>權限內容</span></div>
-        <div class="form-title"><span>備註資料</span></div>
+        <div class="form-title mt-30"><span>權限內容</span></div>
+        <div class="form-title-4 mt-35"><span>備註資料</span></div>
       </div>
 
       <div class="form-panel">
@@ -217,7 +217,7 @@
               </el-form-item>
             </el-col>
 
-            <el-col :span="24">
+            <el-col :span="24" class="submit-form">
               <el-form-item>
                 <el-button @click="resetForm('accessWhitelisting')"
                   >重置</el-button
@@ -346,10 +346,10 @@ export default {
           if (res.data.Status === 0) {
             this.$swal.fire({
               icon: 'success',
-              title: '門禁白名單新增成功',
-              text: '已成功新增人員',
+              title: '門禁白名單新增完成',
+              text: '資料新增完成！可至車牌白名單查看。',
               confirmButtonColor: '#1DB0DD',
-              confirmButtonText: 'OK'
+              confirmButtonText: '我知道了'
             })
           } else {
             this.$swal.fire({
@@ -421,12 +421,16 @@ export default {
     .form-title-container {
       @include flex(column, center, center);
       width: 17%;
-      //   border: 1px solid rgb(75, 178, 34);
       .form-title {
-        // border: 1px solid rgb(34, 48, 178);
         text-align: left;
         width: 100%;
         height: 190px;
+        &-4 {
+          height: auto;
+          text-align: left;
+          width: 100%;
+          color: $color_light_grey;
+        }
       }
     }
     .form-panel {
@@ -464,5 +468,16 @@ export default {
   width: 100%;
   display: inline-block;
   position: relative;
+}
+.mt-30 {
+  margin-top: -30px;
+}
+.mt-35 {
+  margin-top: 15px;
+}
+.el-button {
+  width: 160px;
+  margin-right: 27px;
+  margin-top: 20px;
 }
 </style>

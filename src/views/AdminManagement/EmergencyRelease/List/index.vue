@@ -34,7 +34,7 @@
 
     <div class="item-control-container">
       <el-row class="item-control-row">
-        <!-- <el-col :span="12" class="item-control-col-left">
+        <el-col :span="12" class="item-control-col-left">
           <el-col :span="12">
             <el-select v-model="value" placeholder="請選擇樓層">
               <el-option
@@ -56,7 +56,7 @@
               >
               </el-option> </el-select
           ></el-col>
-        </el-col> -->
+        </el-col>
         <el-col :span="12" class="item-control-col-right">
           <el-col :span="9">
             <ul class="item-status-ul">
@@ -85,7 +85,7 @@
             </el-row>
             <el-divider></el-divider>
             <el-row class="door-panel-control-row" style="margin-bottom: 0px">
-              <el-col :span="8" v-for="(item) in 1" :key="item">
+              <el-col :span="8" v-for="item in 1" :key="item">
                 <el-switch
                   v-model="isOpen"
                   active-color="#1DB0DC"
@@ -160,12 +160,31 @@ export default {
   data () {
     return {
       door: {
-        ViewId: 'V78910',
-        UID: '456',
-        UKey: 'ABCD12345678',
-        SN: '170000001'
+        ViewId: 'D3',
+        UID: '1001',
+        UKey: '3F698DAC58',
+        SN: '1701000110',
+        TamperAlarm: '0',
+        DoorMagnetic: '0'
       },
-      isOpen: false
+      isOpen: false,
+      options: [{
+        value: '選項1',
+        label: '選項1'
+      }, {
+        value: '選項2',
+        label: '選項2'
+      }, {
+        value: '選項3',
+        label: '選項3'
+      }, {
+        value: '選項4',
+        label: '選項4'
+      }, {
+        value: '選項5',
+        label: '選項5'
+      }],
+      value: ''
     }
   },
   methods: {
@@ -173,7 +192,7 @@ export default {
       const flag = this.isOpen
       this.isOpen = !this.isOpen
       this.$swal({
-        title: '確定要執行此操作嗎？',
+        title: '確定要執行大門管制嗎？',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#1DB0DC',
@@ -183,41 +202,44 @@ export default {
       })
         .then(() => {
           const data = qs.stringify(this.door)
-          this.axios.post('/api/QueryCmd', data,
-            {
+          this.axios
+            .post('/api/QueryCmd', data, {
               headers: { 'content-type': 'application/x-www-form-urlencoded' }
-            }).then((res) => {
-            if (res.data.Status === 0) {
-              if (flag) {
-                this.isOpen = true
-                this.$swal.fire({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 1000,
-                  icon: 'success',
-                  title: '開啟成功'
-                })
-              } else {
-                this.isOpen = false
-                this.$swal.fire({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 1000,
-                  icon: 'success',
-                  title: '關閉成功'
-                })
-              }
-            }
-          }).catch((res) => {
-            this.$swal.fire({
-              icon: 'error',
-              title: '操作失敗',
-              text: res.message
             })
-          })
-        }).catch((res) => {
+            .then((res) => {
+              if (res) {
+                if (flag) {
+                  this.isOpen = true
+                  this.$swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    icon: 'success',
+                    title: '大門開啟成功'
+                  })
+                } else {
+                  this.isOpen = false
+                  this.$swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    icon: 'success',
+                    title: '大門關閉成功'
+                  })
+                }
+              }
+            })
+            .catch((res) => {
+              this.$swal.fire({
+                icon: 'error',
+                title: '操作失敗',
+                text: res.message
+              })
+            })
+        })
+        .catch((res) => {
           this.$swal.fire({
             icon: 'error',
             title: '操作失敗',
