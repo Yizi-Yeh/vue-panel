@@ -377,7 +377,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#ED6262',
-        confirmButtonText: '確定'
+        confirmButtonText: '確定',
+        cancelButtonText: '取消'
       }).then((result) => {
         if (result.isConfirmed) {
           this.$refs[accessWhitelisting].resetFields()

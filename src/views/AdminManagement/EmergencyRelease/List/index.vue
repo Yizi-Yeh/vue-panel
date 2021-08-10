@@ -76,7 +76,7 @@
       </el-row>
 
       <el-row class="item-panel-row">
-        <el-col class="item-panel-col-left" :span="11">
+        <el-col class="item-panel-col-left" :span="12">
           <el-card class="box-card" shadow="never">
             <el-row class="door-panel-title-row">
               <el-col class="door-panel-title-col" :span="24"
@@ -85,7 +85,7 @@
             </el-row>
             <el-divider></el-divider>
             <el-row class="door-panel-control-row" style="margin-bottom: 0px">
-              <el-col :span="8" v-for="(item,idx) in 9" :key="item">
+              <el-col :span="8" v-for="(item, idx) in 9" :key="item">
                 <el-switch
                   width="32"
                   v-model="floor.isOpen"
@@ -93,7 +93,7 @@
                   inactive-color="#ED6363"
                   active-text="B1-1大門"
                   style="margin-bottom: 16px"
-                   @change="handelUpdate(idx,floor)"
+                  @change="handelUpdate(idx, floor)"
                   :active-value="true"
                   :inactive-value="false"
                 >
@@ -103,7 +103,7 @@
           </el-card>
         </el-col>
 
-        <el-col class="item-panel-col-right" :span="11">
+        <el-col class="item-panel-col-right" :span="12">
           <el-card class="box-card" shadow="never">
             <el-row class="window-panel-title-row">
               <el-col class="window-panel-title-col" :span="24"
@@ -174,7 +174,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: '#1DB0DC',
         cancelButtonColor: '#ED6363',
-        confirmButtonText: 'YES'
+        confirmButtonText: '確定',
+        cancelButtonText: '取消'
       })
         .then(() => {
           if (flag) {
@@ -311,10 +312,10 @@ export default {
     .item-panel-row {
       .item-panel-col-left {
         float: left;
+        width: 408px;
         .box-card {
           border: 1.5px solid $color_column_border;
           border-radius: 5px;
-          padding: 0px;
           .door-panel-title-row {
             .door-panel-title-col {
               color: $color_blue;
@@ -322,8 +323,6 @@ export default {
             }
           }
           .door-panel-control-row {
-            width: 100%;
-            // border: 1px solid khaki;
             .el-col {
               @include flex(row, center, center);
               display: inline-block;
@@ -332,11 +331,11 @@ export default {
         }
       }
       .item-panel-col-right {
-        float: right;
+         float: right;
+        width: 408px;
         .box-card {
           border: 1.5px solid $color_column_border;
           border-radius: 5px;
-          padding: 0px;
           .window-panel-title-row {
             .window-panel-title-col {
               color: $color_blue;
@@ -373,11 +372,5 @@ export default {
       }
     }
   }
-}
-.el-divider--horizontal {
-  display: block;
-  height: 1px;
-  width: 100%;
-  margin: 12px 0;
 }
 </style>
