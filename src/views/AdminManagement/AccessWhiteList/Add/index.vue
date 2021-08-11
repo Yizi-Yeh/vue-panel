@@ -346,7 +346,7 @@ export default {
           return false
         } else {
           this.axios
-            .post('/api/personwhitelist', this.accessWhitelisting)
+            .post(`${process.env.VUE_APP_API_ENDPOINT}/personwhitelist`, this.accessWhitelisting)
             .then((res) => {
               console.log(this.accessWhitelisting)
               if (res.data.Status === 0) {

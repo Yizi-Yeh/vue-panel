@@ -248,7 +248,7 @@ export default {
         })
     },
     init () {
-      this.axios.get('/api/QueryCmd').then(res => {
+      this.axios.get(`${process.env.VUE_APP_API_ENDPOINT}/QueryCmd`).then(res => {
         console.log(res)
       })
     }
